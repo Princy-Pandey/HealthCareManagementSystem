@@ -19,6 +19,9 @@ import lombok.Data;
 @DynamicInsert(true)
 public class Login 
 {
+	@Column(name = "loginId")
+	private int loginId;
+	
 	@Id
 	@Column(name= "userMail")
 	private String userMail;
@@ -27,9 +30,9 @@ public class Login
 	private String userPassword;
 		
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name= "userId")
+	@JoinColumn(name= "USER_ID", referencedColumnName ="USER_ID")
 	private User userId;
-
+	
 	public Login()
 	{
 		
@@ -40,6 +43,15 @@ public class Login
 		this.userMail = userMail;
 		this.userPassword = userPassword;
 		this.userId = userId;
+	}
+
+	public void setLoginId(int loginId) 
+	{
+		this.loginId = loginId;
+	}
+	public int getLoginId() 
+	{
+		return loginId;
 	}
 
 	public void setUserId(User userId)

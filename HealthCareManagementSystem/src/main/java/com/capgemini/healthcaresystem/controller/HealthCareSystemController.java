@@ -6,19 +6,19 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.capgemini.healthcaresystem.entity.Login;
 import com.capgemini.healthcaresystem.entity.User;
 import com.capgemini.healthcaresystem.exception.HealthCareSystemServiceException;
-import com.capgemini.healthcaresystem.exception.ResourceNotFoundException;
 import com.capgemini.healthcaresystem.service.HealthCareSystemServiceInterface;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -50,57 +50,43 @@ public class HealthCareSystemController
 		}	
 	}
 	
-	 //Happy path, an employee is returned as response
-		@RequestMapping(value = "/employee", method = RequestMethod.GET)
-		public Login getEmpl() throws ResourceNotFoundException, HealthCareSystemServiceException {
-			try
-			{
-				Login login = serviceInterfaceObject.getLogin();
-				if (login == null) 
-				{
-					throw new ResourceNotFoundException("Login not found");
-				}
-				return login;
-			} 
-			catch (HealthCareSystemServiceException e) 
-			{
-				throw new HealthCareSystemServiceException("Internal Server Exception while getting exception");
-			}
+	@GetMapping("/login/{userMail}/{userPassword}")
+	public ResponseEntity<Integer> login(@PathVariable("userMail") String userMail,@PathVariable("userPassword") String userPassword) throws HealthCareSystemServiceException
+	{
+		Integer userId=serviceInterfaceObject.loginUser(userMail, userPassword);
+		return new ResponseEntity<Integer>(userId,HttpStatus.OK);
+	}
+	
+	@GetMapping("/getUser/{userId}")
+    public ResponseEntity<User> getUser (@PathVariable("userId") int userId) 
+	{
+		if(serviceInterfaceObject.existsById(userId))
+		{
+			User user = serviceInterfaceObject.findById(userId);
+			return new ResponseEntity<User>(user,HttpStatus.OK);
 		}
-
-	    //no employee found so ResourceNotFoundException is thrown
-		@RequestMapping(value = "/employee2", method = RequestMethod.GET)
-		public Login getEmp2() throws ResourceNotFoundException, HealthCareSystemServiceException {
-			try 
-			{
-				Login login = serviceInterfaceObject.getLoginNull();
-				if (login == null) 
-				{
-					throw new ResourceNotFoundException("Login not found");
-				}
-				return login;
-			} 
-			catch (HealthCareSystemServiceException e) 
-			{
-				throw new HealthCareSystemServiceException("Internal Server Exception while getting exception");
-			}
+		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+	}
+	
+	@PutMapping("/updateUser/{userId}")
+	public ResponseEntity<User> updateUser(@PathVariable("userId") int userId,@RequestBody User User)
+	{
+	    if (serviceInterfaceObject.existsById(userId)==false)
+	    {
+	    	 return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 		}
-
-	    //Some exception is thrown by service layer
-		@RequestMapping(value = "/employee3", method = RequestMethod.GET)
-		public Login getEmp3() throws ResourceNotFoundException, HealthCareSystemServiceException {
-			try 
-			{
-				Login login = serviceInterfaceObject.getLoginException();
-				if (login == null) 
-				{
-					throw new ResourceNotFoundException("Login not found");
-				}
-				return login;
-			} 
-			catch (HealthCareSystemServiceException e) 
-			{
-				throw new HealthCareSystemServiceException("Internal Server Exception while getting exception");
-			}
+	    serviceInterfaceObject.updateData(User);
+	    return new ResponseEntity<User>(User,HttpStatus.OK);	
+	}
+	
+	@GetMapping("/getUserByEmail/{email}")
+    public ResponseEntity<User> getUserByEmail (@PathVariable("userMail") String userMail) 
+	{
+		if(serviceInterfaceObject.existsByEmail(userMail))
+		{
+			User user = serviceInterfaceObject.findByEmail(userMail);
+			return new ResponseEntity<User>(user,HttpStatus.OK);
 		}
+		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+	}
 }
