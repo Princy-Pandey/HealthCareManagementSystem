@@ -1,2 +1,4 @@
 # HealthCareManagementSystem
-Health Care Management System- Sprint 2 Project
+# USER - APPOINTMENT MODULE
+
+Sprint 2 Project
