@@ -37,6 +37,13 @@ public class LoginDao implements LoginDaoInterface
 		return loginList;
 	}
 
+	@Override
+	public void addLogin(Login login) 
+	{
+		// TODO Auto-generated method stub
+		em.persist(login);
+	}
+
 	
 	
 	/*@Override

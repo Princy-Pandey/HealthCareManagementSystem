@@ -22,15 +22,25 @@ public class Login
 	@JoinColumn(name= "USER", referencedColumnName ="USER_ID")
 	private User user;
 	
-	public enum login{loggedIn,LoggedOut};
+	/*public enum login{loggedIn,LoggedOut};
 	@Enumerated(EnumType.STRING)
 	private login loginStatus=login.LoggedOut;
+	*/
 	
 	//Default Constructor
 	public Login()
 	{
 		
 	}
+
+	public Login(String loginId, User user) 
+	{
+		super();
+		this.loginId = loginId;
+		this.user = user;
+	}
+
+
 
 	//Getters and Setters
 	public String getLoginId() 
@@ -51,18 +61,18 @@ public class Login
 		this.user = user;
 	}
 
-	public login getLoginStatus() 
+	/*public login getLoginStatus() 
 	{
 		return loginStatus;
 	}
 	public void setLoginStatus(login loginStatus) 
 	{
 		this.loginStatus = loginStatus;
-	}
+	}*/
 
 	@Override
 	public String toString() {
-		return "Login [loginId=" + loginId + ", user=" + user + ", loginStatus=" + loginStatus + "]";
+		return "Login [loginId=" + loginId + ", user=" + user + "]"; //", loginStatus=" + loginStatus + 
 	}
 
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.capgemini.healthcaresystem.entity.Login;
 import com.capgemini.healthcaresystem.entity.User;
 import com.capgemini.healthcaresystem.exception.HealthCareSystemServiceException;
 import com.capgemini.healthcaresystem.service.HealthCareSystemServiceInterface;
@@ -47,6 +49,21 @@ public class HealthCareSystemController
 			throw new HealthCareSystemServiceException("Id already exists");
 		}
 	}
+	
+	@PostMapping("/addLogin")
+	public ResponseEntity<Object> addLogin( @RequestBody Login login) throws HealthCareSystemServiceException
+	{	
+		try 
+		{
+			serviceInterfaceObject.addLogin(login);
+			return new ResponseEntity<>("User Logged In",HttpStatus.OK);
+		}
+		catch(DataIntegrityViolationException ex)
+		{
+			throw new HealthCareSystemServiceException("Id doesn't exists");
+		}
+	}
+
 
 	
 	

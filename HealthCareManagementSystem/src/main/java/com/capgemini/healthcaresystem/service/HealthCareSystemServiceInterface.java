@@ -12,6 +12,7 @@ public interface HealthCareSystemServiceInterface
 	public void addUser(User user);
 	List<User> viewUser();
 	List<Login> viewLogin(); 
+	public void addLogin(Login login);
 
 	/*
 	boolean addRegistration(User user) throws HealthCareSystemServiceException;

@@ -41,7 +41,16 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 		// TODO Auto-generated method stub
 		return loginDaoInterface.getLogin();	
 	}
-	
+
+	@Override
+	public void addLogin(Login login) 
+	{
+		// TODO Auto-generated method stub
+		
+		User user = userDaoInterface.getUser(login.getUser().getUserId());
+		Login login1 = new Login(login.getLoginId(), user);
+		loginDaoInterface.addLogin(login1);		
+	}
 	
 	/*
 	@Override

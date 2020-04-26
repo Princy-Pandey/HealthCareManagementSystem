@@ -2,11 +2,13 @@ package com.capgemini.healthcaresystem.dao;
 
 import java.util.List;
 import com.capgemini.healthcaresystem.entity.Login;
+import com.capgemini.healthcaresystem.entity.User;
 
 public interface LoginDaoInterface 
 {
 	Login getLogin(String loginId);
 	public List<Login> getLogin();
+	public void addLogin(Login login);
 	
 	/*boolean findId(int userId);
 	User findById(int userId);
