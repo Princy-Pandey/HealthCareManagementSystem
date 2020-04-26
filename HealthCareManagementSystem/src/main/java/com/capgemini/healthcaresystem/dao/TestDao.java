@@ -26,18 +26,18 @@ public class TestDao implements TestDaoInterface {
 	}
 
 	@Override
-	public void deleteTest(int test_id) {
+	public void deleteTest(String testId) {
 		// TODO Auto-generated method stub
-		Test obj=em.find(Test.class, test_id);
+		Test obj=em.find(Test.class, testId);
 		em.remove(obj);
 		
 	}
 
 	@Override
-	public Test getTest(int test_id) throws TestException {
+	public Test getTest(String testId) throws TestException {
 		// TODO Auto-generated method stub
-		Test test=em.find(Test.class, test_id);
-		if(test==null) throw new TestException("Test Id not exist for "+ test_id);
+		Test test=em.find(Test.class, testId);
+		if(test==null) throw new TestException("Test Id does not exist for "+ testId);
 		return test;
 	}
 

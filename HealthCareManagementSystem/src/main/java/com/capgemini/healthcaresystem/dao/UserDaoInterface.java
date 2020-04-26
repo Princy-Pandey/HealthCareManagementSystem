@@ -6,6 +6,6 @@ import com.capgemini.healthcaresystem.exception.UserException;
 
 public interface UserDaoInterface {
 	
-	User getUser(int user_id) throws UserException;
+	User getUser(String userId) throws UserException;
 	public List<User> getUser();
 }

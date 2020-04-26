@@ -25,18 +25,18 @@ public class CentreDao implements CentreDaoInterface {
 	}
 
 	@Override
-	public void deleteCentre(int centre_id) {
+	public void deleteCentre(String centreId) {
 		// TODO Auto-generated method stub
-		Centre obj=em.find(Centre.class, centre_id);
+		Centre obj=em.find(Centre.class, centreId);
 				em.remove(obj);
 		
 	}
 
 	@Override
-	public Centre getCentre(int centre_id) throws CentreException {
+	public Centre getCentre(String centreId) throws CentreException {
 		// TODO Auto-generated method stub
-		Centre centre=em.find(Centre.class, centre_id);
-		if(centre==null) throw new CentreException("Centre Id not exist for "+ centre_id);
+		Centre centre=em.find(Centre.class, centreId);
+		if(centre==null) throw new CentreException("Centre Id does not exist for "+ centreId);
 		return centre;
 	}
 

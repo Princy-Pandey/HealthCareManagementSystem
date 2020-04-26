@@ -8,7 +8,7 @@ import com.capgemini.healthcaresystem.exception.CentreException;
 public interface CentreDaoInterface {
 	
 	public void addCentre(Centre centre);
-	public void deleteCentre(int centre_id);
-	Centre getCentre(int centre_id) throws CentreException;
+	public void deleteCentre(String centreId);
+	Centre getCentre(String centreId) throws CentreException;
 	public List<Centre> getCentre();
 }

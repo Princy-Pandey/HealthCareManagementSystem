@@ -21,14 +21,14 @@ public class Test {
 	//Id 
    
 	@Id
-	@Column(name= "TEST_ID")
-	private int test_id;
+	@Column(name= "TEST_ID",length=20)
+	private String testId;
     
     
     //Name
    
-    @Column(name= "TEST_NAME")
-	private String test_name;
+    @Column(name= "TEST_NAME",length=25)
+	private String testName;
 	
     
 	//Foreign key
@@ -36,51 +36,57 @@ public class Test {
 	@JoinColumn(name= "CENTRE",referencedColumnName = "centre_id" )
 	
 	private Centre centre;
-	
-	
+
+
 	//Getters and Setters
-	public int getTest_id() {
-		return test_id;
+	public String getTestId() {
+		return testId;
 	}
-	public void setTest_id(int test_id) {
-		this.test_id = test_id;
+
+
+	public void setTestId(String testId) {
+		this.testId = testId;
 	}
-	
-    public String getTest_name() {
-		return test_name;
+
+
+	public String getTestName() {
+		return testName;
 	}
-	public void setTest_name(String test_name) {
-		this.test_name = test_name;
+
+
+	public void setTestName(String testName) {
+		this.testName = testName;
 	}
+
 
 	public Centre getCentre() {
 		return centre;
 	}
+
+
 	public void setCentre(Centre centre) {
-		this.centre =centre;
-		//centre.getTest().add(this);
+		this.centre = centre;
 	}
 
-	
-	//Default Constructors
+	//Default Constructor
 	public Test() {}
+
 	
-	
-	
-	//Parameterized Constructors
-	public Test(Centre centre,int test_id, String test_name) {
+	//Parameterized Constructor
+	public Test(String testId, String testName, Centre centre) {
 		super();
-		this.centre=centre;
-		this.test_id = test_id;
-		this.test_name = test_name;
-		
+		this.testId = testId;
+		this.testName = testName;
+		this.centre = centre;
 	}
-	
-	
+
+
 	@Override
 	public String toString() {
-		return "Test [test_id=" + test_id + ", test_name=" + test_name + ", test_centre_id=" + centre + "]";
+		return "Test [testId=" + testId + ", testName=" + testName + ", centre=" + centre + "]";
 	}
+	
+	
 	
 	
 }

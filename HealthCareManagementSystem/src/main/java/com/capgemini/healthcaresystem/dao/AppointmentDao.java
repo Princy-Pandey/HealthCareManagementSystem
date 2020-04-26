@@ -17,10 +17,10 @@ public class AppointmentDao implements AppointmentDaoInterface{
 	EntityManager em;
 
 	@Override
-	public Appointment getAppointment(int appointment_id) throws AppointmentException {
+	public Appointment getAppointment(long appointmentId) throws AppointmentException {
 		// TODO Auto-generated method stub 
-		Appointment appointment=em.find(Appointment.class, appointment_id);
-		if(appointment==null) throw new AppointmentException("Appointment Id not exist for "+ appointment_id);
+		Appointment appointment=em.find(Appointment.class, appointmentId);
+		if(appointment==null) throw new AppointmentException("Appointment Id does not exist for "+ appointmentId);
 		return appointment;
 	}
 

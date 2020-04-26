@@ -22,13 +22,13 @@ public interface HealthCareSystemServiceInterface {
 	
 	//Test
 	public void addTest(Test test) throws TestException;
-	public void deleteTest(int test_id) throws TestException;
+	public void deleteTest(String testId) throws TestException;
 	List<Test> viewTest() throws TestException;
 	
 	
 	//Centre
 	public void addCentre(Centre centre) throws CentreException;
-	public void deleteCentre(int centre_id) throws CentreException;
+	public void deleteCentre(String centreId) throws CentreException;
 	List<Centre> viewCentre() throws CentreException;
 
 	

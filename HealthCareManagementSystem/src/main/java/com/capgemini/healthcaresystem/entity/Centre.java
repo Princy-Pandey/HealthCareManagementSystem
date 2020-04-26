@@ -16,48 +16,56 @@ public class Centre{
 	//Id 
    
 	@Id
-	@Column(name= "CENTRE_ID")
-	private int centre_id;
+	@Column(name= "CENTRE_ID",length=20)
+	private String centreId;
     
 	
     //Name
    
-    @Column(name= "CENTRE_NAME")
-	private String centre_name;
+    @Column(name= "CENTRE_NAME",length=25)
+	private String centreName;
+
+
+    //Getters and Setters
+	public String getCentreId() {
+		return centreId;
+	}
+
+
+	public void setCentreId(String centreId) {
+		this.centreId = centreId;
+	}
+
+
+	public String getCentreName() {
+		return centreName;
+	}
+
+
+	public void setCentreName(String centreName) {
+		this.centreName = centreName;
+	}
+
+	
+	//Default Constructor
+	public Centre() {}
+
+	//Parameterized Constructor
+	public Centre(String centreId, String centreName) {
+		super();
+		this.centreId = centreId;
+		this.centreName = centreName;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Centre [centreId=" + centreId + ", centreName=" + centreName + "]";
+	}
     
     
    
 	
-    //Getters and setters 
-    public int getCentre_id() {
-		return centre_id;
-	}
-	public void setCentre_id(int centre_id) {
-		this.centre_id = centre_id;
-	}
-
-	public String getCentre_name() {
-		return centre_name;
-	}
-	public void setCentre_name(String centre_name) {
-		this.centre_name = centre_name;
-	}
-	
-	
-	public Centre() {}
-	
-	//Parameterized Constructor
-	public Centre(int centre_id, String centre_name) {
-		super();
-		this.centre_id = centre_id;
-		this.centre_name = centre_name;
-	}
-	
-	
-	@Override
-	public String toString() {
-		return "Centre [centre_id=" + centre_id + ", centre_name=" + centre_name + "]";
-	}
-	
+    
 	
 }

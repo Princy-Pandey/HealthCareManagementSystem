@@ -18,112 +18,118 @@ public class Appointment {
 	//Appointment Id 
     
 	@Id
-	@Column(name= "APPOINTMENT_ID")
-	private long appointment_id;
+	@Column(name= "APPOINTMENT_ID",length=10)
+	private long appointmentId;
 	
     //User Id 
 	@ManyToOne()
 	@JoinColumn(name= "USER_ID", referencedColumnName ="USER_ID")
 	
-	private User user_id;
+	private User userId;
     
     //Test Id 
 	@ManyToOne()
 	@JoinColumn(name= "TEST_ID", referencedColumnName ="TEST_ID")
 	
-	private Test test_id;
+	private Test testId;
 	
     //Centre Id 
 	@ManyToOne()
 	@JoinColumn(name= "CENTRE_ID", referencedColumnName ="CENTRE_ID")
 	
-	private Centre centre_id;
+	private Centre centreId;
     
     
 	//Appointment Date
     
 	@Column(name= "APPOINTMENT_DATE")
-	private String appointment_date;
+	private String appointmentDate;
 	
     //Appointment Time
     
 	@Column(name= "APPOINTMENT_TIME")
-	private String appointment_time;
+	private String appointmentTime;
 	
     //Appointment Approval Status
     
 	@Column(name= "APPROVAL_STATUS")
-	private String approval_status;
-    
-    
-    //Getters and Setters
-	public long getAppointment_id() {
-		return appointment_id;
-	}
-	public void setAppointment_id(long appointment_id) {
-		this.appointment_id = appointment_id;
-	}
-
-	public User getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(User user_id) {
-		this.user_id = user_id;
-	}
-
-	public Test getTest_id() {
-		return test_id;
-	}
-	public void setTest_id(Test test_id) {
-		this.test_id = test_id;
-	}
-
-	public Centre getCentre_id() {
-		return centre_id;
-	}
-	public void setCentre_id(Centre centre_id) {
-		this.centre_id = centre_id;
-	}
-
-	public String getAppointment_time() {
-		return appointment_time;
-	}
-	public void setAppointment_time(String appointment_time) {
-		this.appointment_time = appointment_time;
-	}
-
-	public String getApproval_status() {
-		return approval_status;
-	}
-	public void setApproval_status(String approval_status) {
-		this.approval_status = approval_status;
-	}
+	private boolean approvalStatus;
 	
+	
+	
+
+	//Getters and Setters
+	public long getAppointmentId() {
+		return appointmentId;
+	}
+
+	public void setAppointmentId(long appointmentId) {
+		this.appointmentId = appointmentId;
+	}
+
+	public User getUserId() {
+		return userId;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
+
+	public Test getTestId() {
+		return testId;
+	}
+
+	public void setTestId(Test testId) {
+		this.testId = testId;
+	}
+
+	public Centre getCentreId() {
+		return centreId;
+	}
+
+	public void setCentreId(Centre centreId) {
+		this.centreId = centreId;
+	}
+
+	public String getAppointmentTime() {
+		return appointmentTime;
+	}
+
+	public void setAppointmentTime(String appointmentTime) {
+		this.appointmentTime = appointmentTime;
+	}
+
+	public boolean isApprovalStatus() {
+		return approvalStatus;
+	}
+
+	public void setApprovalStatus(boolean approvalStatus) {
+		this.approvalStatus = approvalStatus;
+	}
+
 	//Default Constructor
 	public Appointment() {}
 	
-	
 	//Parameterized Constructor
-	public Appointment(long appointment_id,User user_id,Test test_id,Centre centre_id,String appointment_date,String appointment_time,String approval_status) 
-	{
+	public Appointment(long appointmentId, User userId, Test testId, Centre centreId, String appointmentDate,
+			String appointmentTime, boolean approvalStatus) {
 		super();
-		this.appointment_id = appointment_id;
-		this.user_id = user_id;
-		this.test_id = test_id;
-		this.centre_id = centre_id;
-		this.appointment_date = appointment_date;
-		this.appointment_time = appointment_time;
-		this.approval_status = approval_status;
+		this.appointmentId = appointmentId;
+		this.userId = userId;
+		this.testId = testId;
+		this.centreId = centreId;
+		this.appointmentDate = appointmentDate;
+		this.appointmentTime = appointmentTime;
+		this.approvalStatus = approvalStatus;
 	}
-	
-	
-	
+
 	@Override
 	public String toString() {
-		return "Appointment [appointment_id=" + appointment_id + ", user_id=" + user_id + ", test_id=" + test_id
-				+ ", centre_id=" + centre_id + ", appointment_date=" + appointment_date + ", appointment_time="
-				+ appointment_time + ", approval_status=" + approval_status + "]";
+		return "Appointment [appointmentId=" + appointmentId + ", userId=" + userId + ", testId=" + testId
+				+ ", centreId=" + centreId + ", appointmentDate=" + appointmentDate + ", appointmentTime="
+				+ appointmentTime + ", approvalStatus=" + approvalStatus + "]";
 	}
-	
-	
+    
+    
+    
 }

@@ -6,7 +6,7 @@ import com.capgemini.healthcaresystem.exception.AppointmentException;
 
 public interface AppointmentDaoInterface {
 
-	Appointment getAppointment(int appointment_id) throws AppointmentException;
+	Appointment getAppointment(long appointmentId) throws AppointmentException;
 	public List<Appointment> getAppointment();
 
 }

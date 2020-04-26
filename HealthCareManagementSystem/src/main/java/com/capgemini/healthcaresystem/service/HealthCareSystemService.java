@@ -53,30 +53,23 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	@Autowired
 	private TestDaoInterface tdao;
 	
-	/*@Override
-	public void addTest(Test test, Centre centre) throws TestException {
-		// TODO Auto-generated method stub
-		Centre cent=cdao.getCentre(centre.getCentre_id());
-		Test obj=new Test(cent,test.getTest_id(),test.getTest_name());
-		tdao.addTest(obj);
-
-	}*/
+	
 	
 	@Override
 	public void addTest(Test test) throws TestException {
 		// TODO Auto-generated method stub
-		Centre cent=cdao.getCentre(test.getCentre().getCentre_id());
-		Test obj=new Test(cent,test.getTest_id(),test.getTest_name());
+		Centre cent=cdao.getCentre(test.getCentre().getCentreId());
+		Test obj=new Test(test.getTestId(),test.getTestName(),cent);
 		tdao.addTest(obj);
 
 	}
 
 	@Override
-	public void deleteTest(int test_id) throws TestException{
+	public void deleteTest(String testId) throws TestException{
 		// TODO Auto-generated method stub
 		
 		
-		 tdao.deleteTest(test_id);
+		 tdao.deleteTest(testId);
 	}
 
 	@Override
@@ -102,9 +95,9 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	}
 
 	@Override
-	public void deleteCentre(int centre_id) throws CentreException{
+	public void deleteCentre(String centreId) throws CentreException{
 		// TODO Auto-generated method stub
-		 cdao.deleteCentre(centre_id);
+		 cdao.deleteCentre(centreId);
 	}
 
 	@Override

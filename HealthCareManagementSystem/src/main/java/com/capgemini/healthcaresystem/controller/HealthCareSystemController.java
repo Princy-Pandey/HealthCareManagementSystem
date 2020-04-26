@@ -1,15 +1,12 @@
 package com.capgemini.healthcaresystem.controller;
 
-import java.util.List;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -66,8 +63,8 @@ public class HealthCareSystemController {
 			throws TestException{
 				
 				try {
-					//test.setCentre(centre);
-					System.out.println("This is test id"+test.getTest_id());
+					
+					System.out.println("This is test id"+test.getTestId());
 					serviceinterfaceObject.addTest(test);
 					
 					return new ResponseEntity<>("Test Added",HttpStatus.OK);
@@ -81,11 +78,11 @@ public class HealthCareSystemController {
 	
 	
 	
-	@DeleteMapping("/deleteTest/{test_id}")
-	public String deleteTest(@PathVariable int test_id)
+	@DeleteMapping("/deleteTest/{testId}")
+	public String deleteTest(@PathVariable String testId)
 	{
-		//test.getCentre();
-		serviceinterfaceObject.deleteTest(test_id);
+		
+		serviceinterfaceObject.deleteTest(testId);
 		return "Test deleted";
 	}
 	
@@ -101,17 +98,11 @@ public class HealthCareSystemController {
 	
 	
 	
-	//
+	
 	@PostMapping("/addCentre")
-	public ResponseEntity<Object> addCentre(@Valid @RequestBody Centre centre, BindingResult br)
+	public ResponseEntity<Object> addCentre( @RequestBody Centre centre)
 	throws CentreException{
-		String err="";
-		if(br.hasErrors()) {
-			List<FieldError> errors=br.getFieldErrors();
-			for(FieldError error:errors)
-				err+=error.getDefaultMessage()+"<br/>";
-			throw new CentreException(err);
-		}
+		
 		try {
 			serviceinterfaceObject.addCentre(centre);
 			return new ResponseEntity<>("Centre Added",HttpStatus.OK);
@@ -126,11 +117,10 @@ public class HealthCareSystemController {
 	
 	
 	
-	@DeleteMapping("/deleteCentre/{centre_id}")
-	public String deleteCentre(@PathVariable("centre_id") int centre_id)
+	@DeleteMapping("/deleteCentre/{centreId}")
+	public String deleteCentre(@PathVariable("centreId") String centreId)
 	{
-		//centre.setCentre_id(centre_id);
-		serviceinterfaceObject.deleteCentre(centre_id);
+		serviceinterfaceObject.deleteCentre(centreId);
 		return "Centre deleted";
 	}
 	
