@@ -9,21 +9,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 public class HealthCareSystemControllerAdvice 
 {
-	@ExceptionHandler(ResourceNotFoundException.class)
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
-	public @ResponseBody ExceptionResponse handleResourceNotFound(final ResourceNotFoundException exception,
-			final HttpServletRequest request) 
-	{
-		ExceptionResponse error = new ExceptionResponse();
-		error.setErrorMessage(exception.getMessage());
-		error.callerURL(request.getRequestURI());
-		return error;
-	}
-
-	@ExceptionHandler(Exception.class)
+	@ExceptionHandler(HealthCareSystemServiceException.class)
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-	public @ResponseBody ExceptionResponse handleException(final Exception exception,
-			final HttpServletRequest request)
+	public @ResponseBody ExceptionResponse handleException(final HealthCareSystemServiceException exception, final HttpServletRequest request)
 	{
 		ExceptionResponse error = new ExceptionResponse();
 		error.setErrorMessage(exception.getMessage());

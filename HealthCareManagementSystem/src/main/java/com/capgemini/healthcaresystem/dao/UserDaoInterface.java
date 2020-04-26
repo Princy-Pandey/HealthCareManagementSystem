@@ -10,7 +10,6 @@ public interface UserDaoInterface
 	boolean findId(int userId);
 	User findById(int userId);
 	void update(User user);
-	Boolean delete(int userId);
 	boolean checkUserByMail(String userMail);
 	User getUserByMail(String userMail);
 	boolean findEmail(String userMail);

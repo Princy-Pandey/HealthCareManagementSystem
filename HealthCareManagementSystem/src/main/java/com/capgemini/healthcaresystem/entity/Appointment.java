@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name= "APPOINTMENT")
@@ -14,6 +15,7 @@ public class Appointment {
 	
 	//Appointment Id 
 	@Id
+    @NotBlank(message = "Appointment Id is Mandatory!")
 	@Column(name= "APPOINTMENT_ID")
 	private long appointment_id;
 	

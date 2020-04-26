@@ -9,7 +9,6 @@ public interface HealthCareSystemServiceInterface
 {
 	boolean addRegistration(User user) throws HealthCareSystemServiceException;
 	public List<User> login();
-	Boolean delete(int userId);
 	User findById(int userId);
 	boolean existsById(int userId);
 	void updateData(User user);

@@ -31,13 +31,8 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	}
 
 	@Override
-	public Boolean delete(int userId) {
-		// TODO Auto-generated method stub
-		return userDaoInterface.delete(userId);
-	}
-
-	@Override
-	public User findById(int userId) {
+	public User findById(int userId) 
+	{
 		// TODO Auto-generated method stub
 		return userDaoInterface.findById(userId);
 	}
@@ -67,7 +62,8 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	public boolean existsByEmail(String userMail) 
 	{
 		// TODO Auto-generated method stub
-		return userDaoInterface.findEmail(userMail);}
+		return userDaoInterface.findEmail(userMail);
+	}
 
 	@Override
 	public Integer loginUser(String userMail, String userPassword) throws HealthCareSystemServiceException 

@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name= "TEST")
@@ -14,11 +15,13 @@ public class Test
 {	
 	//Id 
 	@Id
+    @NotBlank(message = "Test Id is Mandatory!")
 	@Column(name= "TEST_ID")
 	private int test_id;
        
     //Name
-    @Column(name= "TEST_NAME")
+    @NotBlank(message = "Test Name is Mandatory!")
+    @Column(name= "TEST_NAME", length = 20)
 	private String test_name;
 	
 	//Foreign key

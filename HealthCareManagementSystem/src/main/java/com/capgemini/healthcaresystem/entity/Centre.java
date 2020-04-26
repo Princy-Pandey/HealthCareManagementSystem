@@ -4,20 +4,22 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 
 @Entity()
 @Table(name= "CENTRE")
 public class Centre
 {
-	
 	//Id    
 	@Id
+    @NotBlank(message = "Centre Id is Mandatory!")
 	@Column(name= "CENTRE_ID")
 	private int centre_id;
     
     //Name
-    @Column(name= "CENTRE_NAME")
+    @Column(name= "CENTRE_NAME", length = 20)
+    @NotBlank(message = "Centre Name is Mandatory!")
 	private String centre_name;
     
     //Getters and setters 

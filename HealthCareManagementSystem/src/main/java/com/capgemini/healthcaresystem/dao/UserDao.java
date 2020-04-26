@@ -24,7 +24,15 @@ public class UserDao implements UserDaoInterface
 		em.persist(user);
 		return true;
 	}
-
+	
+	@Override
+	public List<User> login() 
+	{
+		// TODO Auto-generated method stub
+		TypedQuery<User> query=em.createQuery("SELECT user FROM User AS user", User.class);
+		return query.getResultList();
+	}
+	
 	@Override
 	public boolean findId(int userId) 
 	{
@@ -60,19 +68,6 @@ public class UserDao implements UserDaoInterface
 	}
 
 	@Override
-	public Boolean delete(int userId) 
-	{
-		// TODO Auto-generated method stub
-		User user = em.find(User.class, userId);
-		if(user!=null)
-		{
-			em.remove(user);
-			return true;
-		}
-		return false;
-	}
-
-	@Override
 	public boolean checkUserByMail(String userMail) 
 	{
 		// TODO Auto-generated method stub
@@ -99,7 +94,8 @@ public class UserDao implements UserDaoInterface
 	}
 
 	@Override
-	public boolean findEmail(String userMail) {
+	public boolean findEmail(String userMail) 
+	{
 		// TODO Auto-generated method stub
 		if(em.contains(em.find(User.class, userMail)))
 		{
@@ -123,13 +119,5 @@ public class UserDao implements UserDaoInterface
 	        // Handle exception
 	    }
 	    return user;
-	}
-
-	@Override
-	public List<User> login() 
-	{
-		// TODO Auto-generated method stub
-		TypedQuery<User> query=em.createQuery("SELECT user FROM User AS user", User.class);
-		return query.getResultList();
 	}
 }
