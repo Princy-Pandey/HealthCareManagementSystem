@@ -1,3 +1,11 @@
+/************************************************************************************
+ *          @author          Kiran Rajput
+ *          Description      It is a Controller class that provides contrrols for Healthcare system, 
+                                         and viewing all the conponents  
+  *         Version             1.0
+  *         Created Date    26-APR-2020
+ ************************************************************************************/
+
 package com.capgemini.healthcaresystem.controller;
 
 import java.util.List;
@@ -45,7 +53,17 @@ public class HealthCareSystemController {
 		return serviceinterfaceObject.viewAppointment();
 	}
 	
+	/************************************************************************************
+	 * Method: addAppointment
+     * Description: to add appointment to the healthcare system
 	
+	 * @param amt                           - to make an appointment 
+	 * @returns Boolean                     - true, if transferred otherwise throws TestException
+	 * @throws TestException                - It is raised when the appointment id is already present in the database
+     * Created By                           - kiran Rajput
+     * Created Date                         - 26-APR-2020                           
+	 
+	 ************************************************************************************/
 	
 	@PostMapping("/addAppointment")
 	public ResponseEntity<Object> addAppointment( @RequestBody Appointment appointment) throws TestException
@@ -81,7 +99,20 @@ public class HealthCareSystemController {
 		return serviceinterfaceObject.viewCentre();
 	}
 	
+	
+	
+	
 	// Show Appointment
+	/************************************************************************************
+	 * Method: showAppointment
+     * Description: to show appointment to the healthcare system
+	
+	 * @param amt                           - to show an appointment 
+	 * @returns Boolean                     - true, if transferred otherwise throws TestException
+	 * Created By                           - kiran Rajput
+     * Created Date                         - 26-APR-2020                           
+	 
+	 ************************************************************************************/
 	
 	@GetMapping("/showAppointment")
 	public List<ShowAppointment> showAppointment() throws AppointmentException
