@@ -2,68 +2,50 @@ package com.capgemini.healthcaresystem.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-
 @Entity
 @Table(name="USERDATA")
-@DynamicUpdate(true)
-@DynamicInsert(true)
 public class User 
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int user_id;
 	
-	@Column(name = "USER_ROLE")
-	private String user_role;
+	@Id
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "USER_ID")
+	private String userId;
+	
+	@Column(name = "USER_ROLE", columnDefinition = "varchar(255) default 'User'")
+	private String userRole;
 	
 	@Column(name= "USER_NAME", length=25)
-    @NotBlank(message = "Firstname is mandatory")
-	private String user_name;
+    //@NotBlank(message = "Firstname is mandatory")
+	private String userName;
 	
 	@Column(name= "USER_PASSWORD", length=50)
-    @NotBlank(message = "Password is mandatory")
-	private String user_password;
+    //@NotBlank(message = "Password is mandatory")
+	private String userPassword;
 		
-	@Column(name= "_USER_MAIL", unique=true, length=50)
-    @NotBlank(message = "Email is mandatory")
-	private String user_mail;
+	@Column(name= "USER_MAIL", unique=true, length=50)
+    //@NotBlank(message = "Email is mandatory")
+	private String userMail;
 	
 	@Column (name= "USER_CONTACT", length=10)
-    @NotBlank(message = "Contact is mandatory")
-	private long user_contact;
+    //@NotBlank(message = "Contact is mandatory")
+	private long userContact;
 
 	@Column(name= "USER_GENDER", length=10)
-    @NotBlank(message = "Gender is mandatory")
-	private String user_gender; 
+    //@NotBlank(message = "Gender is mandatory")
+	private String userGender; 
 	
 	@Column(name= "USER_AGE", length=4)
-    @NotBlank(message = "Age is mandatory")
-	private  int user_age;
+    //@NotBlank(message = "Age is mandatory")
+	private  int userAge;
 	
-	@Column(name = "SECRET_MESSAGE", length=10)
-    @NotBlank(message = "Password is mandatory")
-	private String secret_message;
-	
-	@Column(name = "active",length=1)
-	private int active;
-	
-	public enum type{admin,user};
-	@Enumerated(EnumType.STRING)
-	private type userType=type.user;
-	
-	public enum login{loggedIn,LoggedOut};
-	@Enumerated(EnumType.STRING)
-	private login loginStatus=login.LoggedOut;
+	@Column(name = "SECRET_WORD", length=10)
+    //@NotBlank(message = "Word is mandatory")
+	private String secretWord;
 	
 	//Default Constructor
 	public User() 
@@ -72,139 +54,108 @@ public class User
 	}
 	
 	//Parameterized Constructor
-	public User(String user_mail,String user_password) 
-	{
-		this.user_mail = user_mail;
-		this.user_password = user_password;
-	}
-
-	public User(int user_id,String user_role, String user_name, String user_mail, String user_password, long user_contact, 
-			String user_gender,int user_age, String secret_message) 
+	public User(String userId,String userRole, String userName, String userMail, String userPassword, long userContact, 
+			String userGender,int userAge, String secretWord) 
 	{
 		super();
-		this.user_id = user_id;
-		this.user_role = user_role;
-		this.user_name = user_name;
-		this.user_mail = user_mail;
-		this.user_password = user_password;
-		this.user_contact = user_contact;
-		this.user_gender = user_gender;
-		this.user_age = user_age;
-		this.secret_message = secret_message;
+		this.userId = userId;
+		this.userRole = userRole;
+		this.userName = userName;
+		this.userMail = userMail;
+		this.userPassword = userPassword;
+		this.userContact = userContact;
+		this.userGender = userGender;
+		this.userAge = userAge;
+		this.secretWord = secretWord;
 	}
 	
 	//Getters and Setters 
-	public int getUser_id() 
+	public String getUserId() 
 	{
-		return user_id;
+		return userId;
 	}
-	public void setUser_id(int user_id) 
+	public void setUserId(String userId) 
 	{
-		this.user_id = user_id;
-	}
-
-	public String getUser_role() 
-	{
-		return user_role;
-	}
-	public void setUser_role(String user_role) 
-	{
-		this.user_role = user_role;
+		this.userId = userId;
 	}
 
-	public String getUser_name() 
+	public String getUserRole() 
 	{
-		return user_name;
+		return userRole;
 	}
-	public void setUser_name(String user_name) 
+	public void setUserRole(String userRole) 
 	{
-		this.user_name = user_name;
-	}
-
-	public String getUser_password() 
-	{
-		return user_password;
-	}
-	public void setUser_password(String user_password) 
-	{
-		this.user_password = user_password;
+		this.userRole = userRole;
 	}
 
-	public String getUser_mail() 
+	public String getUserName() 
 	{
-		return user_mail;
+		return userName;
 	}
-	public void setUser_mail(String user_mail) 
+	public void setUserName(String userName) 
 	{
-		this.user_mail = user_mail;
-	}
-
-	public long getUser_contact() 
-	{
-		return user_contact;
-	}
-	public void setUser_contact(long user_contact) 
-	{
-		this.user_contact = user_contact;
+		this.userName = userName;
 	}
 
-	public String getUser_gender() 
+	public String getUserPassword() 
 	{
-		return user_gender;
+		return userPassword;
 	}
-	public void setUser_gender(String user_gender) 
+	public void setUserPassword(String userPassword) 
 	{
-		this.user_gender = user_gender;
-	}
-
-	public int getUser_age() 
-	{
-		return user_age;
-	}
-	public void setUser_age(int user_age) 
-	{
-		this.user_age = user_age;
+		this.userPassword = userPassword;
 	}
 
-	public String getSecret_message() 
+	public String getUserMail() 
 	{
-		return secret_message;
+		return userMail;
 	}
-	public void setSecret_message(String secret_message) 
+	public void setUserMail(String userMail) 
 	{
-		this.secret_message = secret_message;
-	}
-
-	public int getActive() 
-	{
-		return active;
-	}
-	public void setActive(int active) 
-	{
-		this.active = active;
+		this.userMail = userMail;
 	}
 
-	public type getUserType() 
+	public long getUserContact() 
 	{
-		return userType;
+		return userContact;
 	}
-	public void setUserType(type userType) 
+	public void setUserContact(long userContact) 
 	{
-		this.userType = userType;
+		this.userContact = userContact;
 	}
 
-	public login getLoginStatus() 
+	public String getUserGender() 
 	{
-		return loginStatus;
+		return userGender;
 	}
-	public void setLoginStatus(login loginStatus) 
+	public void setUserGender(String userGender) 
 	{
-		this.loginStatus = loginStatus;
+		this.userGender = userGender;
+	}
+
+	public int getUserAge() 
+	{
+		return userAge;
+	}
+	public void setUserAge(int userAge) 
+	{
+		this.userAge = userAge;
+	}
+
+	public String getSecretWord() 
+	{
+		return secretWord;
+	}
+	public void setSecretWord(String secretWord) 
+	{
+		this.secretWord = secretWord;
 	}
 
 	@Override
-	public String toString() {
-		return "User [user_id=" + user_id + ", user_role=" + user_role + ", user_name=" + user_name + ", user_contact_no=" + user_contact
-				+ ", user_email=" + user_mail + ", user_password=" + user_password + ", user_age=" + user_age + ", user_gender=" + user_gender + "]";
+	public String toString() 
+	{
+		return "User [userId=" + userId + ", userRole=" + userRole + ", userName=" + userName + ", userPassword="
+				+ userPassword + ", userMail=" + userMail + ", userContact=" + userContact + ", userGender="
+				+ userGender + ", userAge=" + userAge + ", secretWord=" + secretWord + "]";
 	}
 }

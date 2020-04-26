@@ -1,15 +1,9 @@
 package com.capgemini.healthcaresystem.controller;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,24 +15,45 @@ import com.capgemini.healthcaresystem.entity.User;
 import com.capgemini.healthcaresystem.exception.HealthCareSystemServiceException;
 import com.capgemini.healthcaresystem.service.HealthCareSystemServiceInterface;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class HealthCareSystemController 
 {
 	@Autowired
 	private HealthCareSystemServiceInterface serviceInterfaceObject;
 	
-	@PostMapping("/registration")
-	public String addRegistration(@Valid @RequestBody User user, BindingResult br) throws HealthCareSystemServiceException
+	@GetMapping("/getLogin")
+	public ResponseEntity<Object> getLogin()
 	{
-		String err="";
-		if(br.hasErrors())
+		return new ResponseEntity<>(serviceInterfaceObject.viewLogin(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/getUser")
+	public ResponseEntity<Object> getUser()
+	{
+		return new ResponseEntity<>(serviceInterfaceObject.viewUser(),HttpStatus.OK);
+	}
+
+	@PostMapping("/addUser")
+	public ResponseEntity<Object> addUser( @RequestBody User user) throws HealthCareSystemServiceException
+	{	
+		try 
 		{
-			List<FieldError> errors = br.getFieldErrors();
-			for(FieldError error:errors)
-				err += error.getDefaultMessage() + "<br/>";
-			throw new HealthCareSystemServiceException(err);
+			serviceInterfaceObject.addUser(user);
+			return new ResponseEntity<>("User Added",HttpStatus.OK);
 		}
+		catch(DataIntegrityViolationException ex)
+		{
+			throw new HealthCareSystemServiceException("Id already exists");
+		}
+	}
+
+	
+	
+	/*
+	@PostMapping("/registration")
+	public String addRegistration(@RequestBody User user) throws HealthCareSystemServiceException
+	{
 		try
 		{
 			serviceInterfaceObject.addRegistration(user);
@@ -51,10 +66,10 @@ public class HealthCareSystemController
 	}
 	
 	@GetMapping("/login/{userMail}/{userPassword}")
-	public ResponseEntity<Integer> login(@PathVariable("userMail") String userMail,@PathVariable("userPassword") String userPassword) throws HealthCareSystemServiceException
+	public ResponseEntity<String> login(@PathVariable("userMail") String userMail,@PathVariable("userPassword") String userPassword) throws HealthCareSystemServiceException
 	{
-		Integer userId=serviceInterfaceObject.loginUser(userMail, userPassword);
-		return new ResponseEntity<Integer>(userId,HttpStatus.OK);
+		String userId=serviceInterfaceObject.loginUser(userMail, userPassword);
+		return new ResponseEntity<String>(userId,HttpStatus.OK);
 	}
 	
 	@GetMapping("/getUser/{userId}")
@@ -88,5 +103,5 @@ public class HealthCareSystemController
 			return new ResponseEntity<User>(user,HttpStatus.OK);
 		}
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-	}
+	}*/
 }

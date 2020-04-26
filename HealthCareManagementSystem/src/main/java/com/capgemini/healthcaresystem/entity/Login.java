@@ -3,88 +3,66 @@ package com.capgemini.healthcaresystem.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
-import lombok.Data;
-
-@Data
 @Entity
 @Table(name="LOGIN")
-@DynamicUpdate(true)
-@DynamicInsert(true)
 public class Login 
 {
-	@Column(name = "loginId")
-	private int loginId;
-	
 	@Id
-	@Column(name= "userMail")
-	private String userMail;
+	@Column(name = "LOGIN_ID")
+	private String loginId;
 	
-	@Column(name= "userPassword")
-	private String userPassword;
-		
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name= "USER_ID", referencedColumnName ="USER_ID")
-	private User userId;
+	@JoinColumn(name= "USER", referencedColumnName ="USER_ID")
+	private User user;
 	
+	public enum login{loggedIn,LoggedOut};
+	@Enumerated(EnumType.STRING)
+	private login loginStatus=login.LoggedOut;
+	
+	//Default Constructor
 	public Login()
 	{
 		
 	}
-	
-	public Login(String userMail, String userPassword,User userId)
-	{
-		this.userMail = userMail;
-		this.userPassword = userPassword;
-		this.userId = userId;
-	}
 
-	public void setLoginId(int loginId) 
-	{
-		this.loginId = loginId;
-	}
-	public int getLoginId() 
+	//Getters and Setters
+	public String getLoginId() 
 	{
 		return loginId;
 	}
-
-	public void setUserId(User userId)
+	public void setLoginId(String loginId) 
 	{
-		this.userId = userId;
-	}
-	public User getUserId() 
-	{
-		return userId;
+		this.loginId = loginId;
 	}
 
-	public void setUserMail(String userMail) 
+	public User getUser() 
 	{
-		this.userMail = userMail;
+		return user;
 	}
-	public String getUserMail() 
+	public void setUser(User user) 
 	{
-		return userMail;
-	}
-	
-	public void setUserPassword(String userPassword) 
-	{
-		this.userPassword = userPassword;
-	}
-	public String getUserPassword() 
-	{
-		return userPassword;
+		this.user = user;
 	}
 
-	
+	public login getLoginStatus() 
+	{
+		return loginStatus;
+	}
+	public void setLoginStatus(login loginStatus) 
+	{
+		this.loginStatus = loginStatus;
+	}
+
 	@Override
-	public String toString()
-	{
-		return userId + " " + userMail + " " + userPassword ;
+	public String toString() {
+		return "Login [loginId=" + loginId + ", user=" + user + ", loginStatus=" + loginStatus + "]";
 	}
+
 }
