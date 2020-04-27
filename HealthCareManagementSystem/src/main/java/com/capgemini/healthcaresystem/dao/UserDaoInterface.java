@@ -4,6 +4,9 @@ import java.util.List;
 import com.capgemini.healthcaresystem.entity.User;
 import com.capgemini.healthcaresystem.exception.UserException;
 
+
+/*****************Interface of User ********************/
+
 public interface UserDaoInterface {
 	
 	User getUser(String userId) throws UserException;

@@ -9,56 +9,58 @@ import javax.persistence.Table;
 
 
 
+/************************************************************************************
+ *          @author          Princy Pandey
+ *          Description      It is a entity class that provides the entites for 
+ *                           appointment made by user .
+ *          Version             1.0
+ *          Created Date    20-APR-2020
+ ************************************************************************************/
+
+
 
 @Entity
 @Table(name= "APPOINTMENT")
 public class Appointment {
 	
 	
-	//Appointment Id 
-    
+	/*************Appointment Id ****************/
 	@Id
 	@Column(name= "APPOINTMENT_ID",length=10)
 	private long appointmentId;
 	
-    //User Id 
+    /***************User Id**********************/
 	@ManyToOne()
 	@JoinColumn(name= "USER_ID", referencedColumnName ="USER_ID")
-	
 	private User userId;
     
-    //Test Id 
+    /****************Test Id*********************/ 
 	@ManyToOne()
 	@JoinColumn(name= "TEST_ID", referencedColumnName ="TEST_ID")
-	
 	private Test testId;
 	
-    //Centre Id 
+    /****************Centre Id*******************/ 
 	@ManyToOne()
 	@JoinColumn(name= "CENTRE_ID", referencedColumnName ="CENTRE_ID")
-	
-	private Centre centreId;
+	private DiagnosticCentre centreId;
     
     
-	//Appointment Date
-    
+	/**************Appointment Date**************/
 	@Column(name= "APPOINTMENT_DATE")
 	private String appointmentDate;
 	
-    //Appointment Time
-    
+    /**************Appointment Time**************/
 	@Column(name= "APPOINTMENT_TIME")
 	private String appointmentTime;
 	
-    //Appointment Approval Status
-    
+    /********Appointment Approval Status*********/
 	@Column(name= "APPROVAL_STATUS")
 	private boolean approvalStatus;
 	
 	
 	
 
-	//Getters and Setters
+	/**************Getters and Setters***********/
 	public long getAppointmentId() {
 		return appointmentId;
 	}
@@ -83,11 +85,11 @@ public class Appointment {
 		this.testId = testId;
 	}
 
-	public Centre getCentreId() {
+	public DiagnosticCentre getCentreId() {
 		return centreId;
 	}
 
-	public void setCentreId(Centre centreId) {
+	public void setCentreId(DiagnosticCentre centreId) {
 		this.centreId = centreId;
 	}
 
@@ -107,11 +109,11 @@ public class Appointment {
 		this.approvalStatus = approvalStatus;
 	}
 
-	//Default Constructor
+	/**************Default Constructor**************/
 	public Appointment() {}
 	
-	//Parameterized Constructor
-	public Appointment(long appointmentId, User userId, Test testId, Centre centreId, String appointmentDate,
+	/************Parameterized Constructor***********/
+	public Appointment(long appointmentId, User userId, Test testId, DiagnosticCentre centreId, String appointmentDate,
 			String appointmentTime, boolean approvalStatus) {
 		super();
 		this.appointmentId = appointmentId;

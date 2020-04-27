@@ -10,11 +10,28 @@ import com.capgemini.healthcaresystem.entity.Appointment;
 import com.capgemini.healthcaresystem.exception.AppointmentException;
 
 
-@Repository
+
+/************************************************************************************
+ *          @author          Princy Pandey
+ *          Description      It is a dao class that provides the methods for getting
+ *                           appointment made by user .
+ *          Version          1.0
+ *          Created Date     20-APR-2020
+ ************************************************************************************/
+
+
+@Repository("appointmentdao")
 public class AppointmentDao implements AppointmentDaoInterface{
 	
 	@PersistenceContext
 	EntityManager em;
+
+	/************************************************************************************
+	 * Method:                        getAppointment
+     * Description:                   To fetch the appointment made by user 
+	 * @param getAppointment          Appointment made
+	 * @throws AppointmentException   It is raised due to appointment id does not exist
+	 ************************************************************************************/
 
 	@Override
 	public Appointment getAppointment(long appointmentId) throws AppointmentException {

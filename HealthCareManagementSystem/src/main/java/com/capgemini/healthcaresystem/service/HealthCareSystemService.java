@@ -1,18 +1,15 @@
 package com.capgemini.healthcaresystem.service;
 
 import java.util.List;
-
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.capgemini.healthcaresystem.dao.AppointmentDaoInterface;
-import com.capgemini.healthcaresystem.dao.CentreDaoInterface;
+import com.capgemini.healthcaresystem.dao.DiagnosticCentreDaoInterface;
 import com.capgemini.healthcaresystem.dao.UserDaoInterface;
 import com.capgemini.healthcaresystem.dao.TestDaoInterface;
 import com.capgemini.healthcaresystem.entity.Appointment;
-import com.capgemini.healthcaresystem.entity.Centre;
+import com.capgemini.healthcaresystem.entity.DiagnosticCentre;
 import com.capgemini.healthcaresystem.entity.User;
 import com.capgemini.healthcaresystem.exception.AppointmentException;
 import com.capgemini.healthcaresystem.exception.CentreException;
@@ -21,11 +18,29 @@ import com.capgemini.healthcaresystem.exception.UserException;
 import com.capgemini.healthcaresystem.entity.Test;
 
 
+/************************************************************************************
+*          @author          Princy Pandey
+*          Description      It is a service class that provides the services for 
+*                           adding,removing and displaying centre,test,user and
+*                           appointments
+*          Version          1.0
+*          Created Date     20-APR-2020
+************************************************************************************/
+
+
 @Transactional
 @Service
 public class HealthCareSystemService implements HealthCareSystemServiceInterface{
 	
-	//Appointment
+	
+	
+	/************************************************************************************
+	 * Method:                        viewAppointment
+     * Description:                   To view appointment made by user
+	 * @param viewAppointment         Display appointment details
+	 * @throws AppointmentException   It is raised due to appointment id not present
+	************************************************************************************/
+	
 	@Autowired
 	private AppointmentDaoInterface adao;
 	
@@ -37,7 +52,14 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	
 	
 	
-	//User
+	
+	/************************************************************************************
+	 * Method:                        viewUser
+     * Description:                   To view user registered
+	 * @param viewUser                Display user's details
+	 * @throws UserException          It is raised due to user id not present
+	************************************************************************************/
+	
 	@Autowired
 	private UserDaoInterface udao;
 	
@@ -49,27 +71,37 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	
 	
 	
-	//Test
+	/************************************************************************************
+	 * Method:                        Test
+     * Description:                   To add,remove and display test
+	 * @param addTest                 Adding test into a particular centre
+	 * @param deleteTest              Deleting test into a particular centre
+	 * @param viewTest                Display all test present
+	 * @throws TestException          It is raised due to test id not present
+	************************************************************************************/
+	
 	@Autowired
 	private TestDaoInterface tdao;
 	
-	
-	
 	@Override
-	public void addTest(Test test) throws TestException {
+	public boolean addTest(Test test) throws TestException {
 		// TODO Auto-generated method stub
-		Centre cent=cdao.getCentre(test.getCentre().getCentreId());
+		DiagnosticCentre cent=cdao.getCentre(test.getCentre().getCentreId());
 		Test obj=new Test(test.getTestId(),test.getTestName(),cent);
-		tdao.addTest(obj);
-
+		
+		if(tdao.addTest(obj))
+			return true;
+		else
+			throw new TestException("Cannot add test, check id");
 	}
 
 	@Override
-	public void deleteTest(String testId) throws TestException{
+	public boolean deleteTest(String testId) throws TestException{
 		// TODO Auto-generated method stub
-		
-		
-		 tdao.deleteTest(testId);
+		if( tdao.deleteTest(testId))
+			return true;
+		else
+			throw new TestException("Cannot add test, check id");
 	}
 
 	@Override
@@ -82,32 +114,46 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	
 
 	
+	/************************************************************************************
+	 * Method:                        Centre
+     * Description:                   To add,remove and display centre
+	 * @param addCentre               Adding centre
+	 * @param deleteCentre            Deleting centre
+	 * @param viewCentre              Display all centre present
+	 * @throws CentreException        It is raised due to centre id not present
+	************************************************************************************/
 	
-	//Centre
 	@Autowired
-	private CentreDaoInterface cdao;
+	private DiagnosticCentreDaoInterface cdao;
 
 	@Override
-	public void addCentre(Centre centre) throws CentreException{
+	public boolean addCentre(DiagnosticCentre diagnosticCentre) throws CentreException{
 		// TODO Auto-generated method stub
-		 cdao.addCentre(centre);
-		
+		if(cdao.addCentre(diagnosticCentre))
+		{
+		 return true;
+		}
+		else
+			throw new CentreException("Cannot add Centre, check id");
 	}
 
 	@Override
-	public void deleteCentre(String centreId) throws CentreException{
+	public boolean deleteCentre(String centreId) throws CentreException{
 		// TODO Auto-generated method stub
-		 cdao.deleteCentre(centreId);
+		 if(cdao.deleteCentre(centreId))
+		 {
+			 return true;
+		 }
+		 else
+				throw new CentreException("Cannot delete Centre, check id");
 	}
 
 	@Override
-	public List<Centre> viewCentre() throws CentreException{
+	public List<DiagnosticCentre> viewCentre() throws CentreException{
 		// TODO Auto-generated method stub
 		return cdao.getCentre();
 	}
-
 	
-
 }
 
 

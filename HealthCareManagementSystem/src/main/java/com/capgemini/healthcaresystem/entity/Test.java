@@ -1,7 +1,5 @@
 package com.capgemini.healthcaresystem.entity;
 
-
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,33 +10,38 @@ import javax.persistence.Table;
 
 
 
+/************************************************************************************
+ *          @author          Princy Pandey
+ *          Description      It is a entity class that provides the entites for 
+ *                           test inside diagnostic centre made by admin .
+ *          Version             1.0
+ *          Created Date    20-APR-2020
+ ************************************************************************************/
 
 
 @Entity
 @Table(name= "TEST")
 public class Test {
 	
-	//Id 
-   
+	
+	/*************Test Id ****************/
 	@Id
 	@Column(name= "TEST_ID",length=20)
 	private String testId;
-    
-    
-    //Name
-   
+	
+	
+	/*************Test Id ****************/
     @Column(name= "TEST_NAME",length=25)
 	private String testName;
 	
     
-	//Foreign key
+    /*************Centre Id ****************/
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name= "CENTRE",referencedColumnName = "centre_id" )
-	
-	private Centre centre;
+	@JoinColumn(name= "DIAGNOSTIC_CENTRE",referencedColumnName = "centre_id" )
+	private DiagnosticCentre diagnosticCentre;
 
 
-	//Getters and Setters
+	/**************Getters and Setters***********/
 	public String getTestId() {
 		return testId;
 	}
@@ -59,31 +62,31 @@ public class Test {
 	}
 
 
-	public Centre getCentre() {
-		return centre;
+	public DiagnosticCentre getCentre() {
+		return diagnosticCentre;
 	}
 
 
-	public void setCentre(Centre centre) {
-		this.centre = centre;
+	public void setCentre(DiagnosticCentre diagnosticCentre) {
+		this.diagnosticCentre = diagnosticCentre;
 	}
 
-	//Default Constructor
+	/**************Default Constructor**************/
 	public Test() {}
 
 	
-	//Parameterized Constructor
-	public Test(String testId, String testName, Centre centre) {
+	/************Parameterized Constructor***********/
+	public Test(String testId, String testName, DiagnosticCentre diagnosticCentre) {
 		super();
 		this.testId = testId;
 		this.testName = testName;
-		this.centre = centre;
+		this.diagnosticCentre = diagnosticCentre;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Test [testId=" + testId + ", testName=" + testName + ", centre=" + centre + "]";
+		return "Test [testId=" + testId + ", testName=" + testName + ", centre=" + diagnosticCentre + "]";
 	}
 	
 	

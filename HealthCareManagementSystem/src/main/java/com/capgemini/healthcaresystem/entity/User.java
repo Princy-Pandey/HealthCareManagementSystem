@@ -7,51 +7,49 @@ import javax.persistence.Table;
 
 
 
+/************************************************************************************
+ *          @author          Princy Pandey
+ *          Description      It is a entity class that provides the entites for 
+ *                           user registered .
+ *          Version             1.0
+ *          Created Date    20-APR-2020
+ ************************************************************************************/
+
 
 
 @Entity
 @Table(name= "USER")
 public class User {
 	
-	
-	//Id 
-   
+	/*************User Id ****************/
 	@Id
 	@Column(name= "USER_ID",length=20)
 	private String userId;
     
-    //Name
-    
+	/*************User Name ****************/
 	@Column(name= "USER_NAME",length=25)
 	private String userName;
     
     
-    //Contact-number
-    
+	/**********User Contact Number *********/
 	@Column(name= "USER_CONTACT_NO",length=10)
 	private long userContactNumber;
 	
-    //Email ID
-    
+	/**********User Email Id **************/
 	@Column(name= "USER_EMAIL",length=25)
 	private String userEmail;
     
-    //Age
-    
+	/*************User Age****************/
 	@Column(name= "USER_AGE",length=10)
 	private int userAge;
 	
     
-    //Gender
-    
+	/*************User Gender****************/
 	@Column(name= "USER_GENDER",length=25)
 	private String userGender;
 
-
 	
-	
-	
-	//Getters and Setters
+	/**************Getters and Setters***********/
 	public String getUserId() {
 		return userId;
 	}
@@ -112,11 +110,11 @@ public class User {
 	}
 	
 	
-	//Default Constructor
+	/**************Default Constructor**************/
 	public User() {}
 
 
-	//Parameterized Constructor
+	/************Parameterized Constructor***********/
 	public User(String userId, String userName, long userContactNumber, String userEmail, int userAge,
 			String userGender) {
 		super();
