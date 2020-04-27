@@ -4,56 +4,67 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+
+/****************************************************************************************************************************
+ *          @author       -  Maneesh Kumar
+ *          Description   -  It is a entity class that provides the entites for users.
+ *          Version       -  1.0
+ *          Created Date  -  20-APR-2020
+ ****************************************************************************************************************************/
+
 
 @Entity
 @Table(name="USERDATA")
 public class User 
 {
-	
+	/********** User Id **********/
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "USER_ID")
 	private String userId;
 	
+	/********** User Role **********/
 	@Column(name = "USER_ROLE", columnDefinition = "varchar(255) default 'User'")
 	private String userRole;
 	
+	/********** User Name **********/
 	@Column(name= "USER_NAME", length=25)
-    //@NotBlank(message = "Firstname is mandatory")
-	private String userName;
+    private String userName;
 	
-	@Column(name= "USER_PASSWORD", length=50)
-    //@NotBlank(message = "Password is mandatory")
-	private String userPassword;
-		
+	/********** User Mail **********/
 	@Column(name= "USER_MAIL", unique=true, length=50)
-    //@NotBlank(message = "Email is mandatory")
-	private String userMail;
+    private String userMail;
 	
+	/********** User Password **********/
+	@Column(name= "USER_PASSWORD", length=50)
+    private String userPassword;
+		
+	/********** User Contact **********/
 	@Column (name= "USER_CONTACT", length=10)
-    //@NotBlank(message = "Contact is mandatory")
-	private long userContact;
+    private long userContact;
 
+	/********** User Gender **********/
 	@Column(name= "USER_GENDER", length=10)
-    //@NotBlank(message = "Gender is mandatory")
 	private String userGender; 
 	
+	/********** User Age **********/
 	@Column(name= "USER_AGE", length=4)
-    //@NotBlank(message = "Age is mandatory")
 	private  int userAge;
 	
+	/********** Secret Word **********/
+	// This is used in the case, if the user forgets it password.
+	// Secret word will be used with userMail to check the validity 
+	// and show the existing password to the user on frontend.
 	@Column(name = "SECRET_WORD", length=10)
-    //@NotBlank(message = "Word is mandatory")
-	private String secretWord;
+    private String secretWord;
 	
-	//Default Constructor
+	/********** Default Constructor **********/
 	public User() 
 	{
 		
 	}
 	
-	//Parameterized Constructor
+	/********** Parameterized Constructor **********/
 	public User(String userId,String userRole, String userName, String userMail, String userPassword, long userContact, 
 			String userGender,int userAge, String secretWord) 
 	{
@@ -69,7 +80,7 @@ public class User
 		this.secretWord = secretWord;
 	}
 	
-	//Getters and Setters 
+	/********** Getters and Setters **********/
 	public String getUserId() 
 	{
 		return userId;

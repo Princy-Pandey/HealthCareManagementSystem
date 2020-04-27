@@ -8,20 +8,11 @@ import com.capgemini.healthcaresystem.exception.HealthCareSystemServiceException
 
 public interface HealthCareSystemServiceInterface 
 {
-	
-	public void addUser(User user);
+	boolean addRegistration(User user) throws HealthCareSystemServiceException;
 	List<User> viewUser();
 	List<Login> viewLogin(); 
-	public void addLogin(Login login);
+	User loginUser(String userMail, String userPassword) throws HealthCareSystemServiceException;
+	String changePassword(String userMail, String secretWord) throws HealthCareSystemServiceException;
 
-	/*
-	boolean addRegistration(User user) throws HealthCareSystemServiceException;
-	public List<User> login();
-	User findById(int userId);
-	boolean existsById(int userId);
-	void updateData(User user);
-	User findByEmail(String userMail);
-	boolean existsByEmail(String userMail);
-	String loginUser(String userMail, String userPassword) throws HealthCareSystemServiceException;
-	*/
+	//public void addLogin(Login login) throws HealthCareSystemServiceException, UserException;
 }

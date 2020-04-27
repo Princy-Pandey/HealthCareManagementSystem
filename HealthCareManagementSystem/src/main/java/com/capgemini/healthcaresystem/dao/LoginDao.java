@@ -3,12 +3,10 @@ package com.capgemini.healthcaresystem.dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 import com.capgemini.healthcaresystem.entity.Login;
-import com.capgemini.healthcaresystem.entity.User;
 
 @Transactional
 @Repository
@@ -20,7 +18,6 @@ public class LoginDao implements LoginDaoInterface
 	@Override
 	public Login getLogin(String loginId) 
 	{
-		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		Login login = em.find(Login.class, loginId);
 			//if(user==null) 
@@ -44,6 +41,31 @@ public class LoginDao implements LoginDaoInterface
 		em.persist(login);
 	}
 
+	@Override
+	public boolean checkUserByMail(String userMail) 
+	{
+		// TODO Auto-generated method stub
+		String Qstr = "SELECT login.user.user_mail FROM Login login WHERE login.user.user_mail = :user.user_mail";
+   		TypedQuery<String> query = em.createQuery(Qstr,String.class).setParameter("userMail",userMail);
+   		try
+   		{
+   			query.getSingleResult();
+   		}
+   		catch(Exception ex)
+   		{
+   			return false;
+   		}
+   		return true;
+	}
+	
+	@Override
+	public Login getUserByMail(String userMail) 
+	{
+		// TODO Auto-generated method stub
+		String Qstr = "SELECT login FROM Login login WHERE login.user.user_mail = :user.user_mail";
+   		TypedQuery<Login> query = em.createQuery(Qstr,Login.class).setParameter("userMail",userMail);
+   		return query.getSingleResult();
+	}
 	
 	
 	/*@Override

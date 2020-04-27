@@ -11,10 +11,11 @@ public class HealthCareSystemControllerAdvice
 {
 	@ExceptionHandler(HealthCareSystemServiceException.class)
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-	public @ResponseBody ExceptionResponse handleException(final HealthCareSystemServiceException exception, final HttpServletRequest request)
+	public @ResponseBody ExceptionResponse handleException(final HealthCareSystemServiceException hcsexception,final UserException userexception , final HttpServletRequest request)
 	{
 		ExceptionResponse error = new ExceptionResponse();
-		error.setErrorMessage(exception.getMessage());
+		error.setErrorMessage(hcsexception.getMessage());
+		error.setErrorMessage(userexception.getMessage());
 		error.callerURL(request.getRequestURI());
 		return error;
 	}

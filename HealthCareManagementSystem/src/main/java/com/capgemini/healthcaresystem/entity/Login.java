@@ -3,8 +3,8 @@ package com.capgemini.healthcaresystem.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+//import javax.persistence.EnumType;
+//import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -40,8 +40,7 @@ public class Login
 		this.user = user;
 	}
 
-
-
+	
 	//Getters and Setters
 	public String getLoginId() 
 	{
