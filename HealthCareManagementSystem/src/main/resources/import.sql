@@ -1,18 +1,18 @@
 /*********************************************************************************USER DATA********************************************************************************/
 INSERT INTO `user` (user_id,user_age,user_contact_no,user_email,user_gender,user_name) VALUES ('1',20,7678986567,'prind@hch.com','f','Princy');
-INSERT INTO `user` (user_id,user_age,user_contact_no,user_email,user_gender,user_name) VALUES ('2',20,7678986567,'p','f','Kittu');
-INSERT INTO `user` (user_id,user_age,user_contact_no,user_email,user_gender,user_name) VALUES ('3',20,7678986567,'prind@hch.com','m','Anurag');
-INSERT INTO `user` (user_id,user_age,user_contact_no,user_email,user_gender,user_name) VALUES ('4',20,7678986567,'prind@hch.com','f','Nikhita');
-INSERT INTO `user` (user_id,user_age,user_contact_no,user_email,user_gender,user_name) VALUES ('5',20,7678986567,'prind@hch.com','m','Shahrukh');
+INSERT INTO `user` (user_id,user_age,user_contact_no,user_email,user_gender,user_name) VALUES ('2',20,7678986567,'p','f','Kit');
+INSERT INTO `user` (user_id,user_age,user_contact_no,user_email,user_gender,user_name) VALUES ('3',20,7678986567,'prind@hch.com','m','Anu');
+INSERT INTO `user` (user_id,user_age,user_contact_no,user_email,user_gender,user_name) VALUES ('4',20,7678986567,'prind@hch.com','f','Nik');
+INSERT INTO `user` (user_id,user_age,user_contact_no,user_email,user_gender,user_name) VALUES ('5',20,7678986567,'prind@hch.com','m','DoDo');
 
 
 /*************************************************************************DIAGNOSTIC CENTRE DATA*************************************************************************/
 
-INSERT INTO `diagnosticcentre` (centre_id,centre_name,centre_contact_number,centre_address) VALUES ('1','Jalandhar',7508027308,'784 Hargobind Nagar');
-INSERT INTO `diagnosticcentre` (centre_id,centre_name,centre_contact_number,centre_address) VALUES ('2','Phagwara',7508027308,'784 Hargobind Nagar');
-INSERT INTO `diagnosticcentre` (centre_id,centre_name,centre_contact_number,centre_address) VALUES ('3','Allahabad',7508027308,'784 Hargobind Nagar');
-INSERT INTO `diagnosticcentre` (centre_id,centre_name,centre_contact_number,centre_address) VALUES ('4','New Delhi',7508027308,'784 Hargobind Nagar');
-INSERT INTO `diagnosticcentre` (centre_id,centre_name,centre_contact_number,centre_address) VALUES ('5','Banglore',7508027308,'784 Hargobind Nagar');
+INSERT INTO `diagnosticcentre` (centre_id,centre_name,centre_contact_number,centre_address) VALUES ('1','Jalandhar',7508027308,'784 Model Town');
+INSERT INTO `diagnosticcentre` (centre_id,centre_name,centre_contact_number,centre_address) VALUES ('2','Phagwara',7508027308,'980 Banga road');
+INSERT INTO `diagnosticcentre` (centre_id,centre_name,centre_contact_number,centre_address) VALUES ('3','Allahabad',7508027308,'34 Meerapur');
+INSERT INTO `diagnosticcentre` (centre_id,centre_name,centre_contact_number,centre_address) VALUES ('4','New Delhi',7508027308,'456 SouthDelhi');
+INSERT INTO `diagnosticcentre` (centre_id,centre_name,centre_contact_number,centre_address) VALUES ('5','Banglore',7508027308,'26-B White Fields');
 
 
 /*********************************************************************************TEST DATA*************************************************************************************/
