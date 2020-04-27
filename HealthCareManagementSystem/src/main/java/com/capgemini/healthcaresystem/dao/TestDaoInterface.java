@@ -15,7 +15,8 @@ import com.capgemini.healthcaresystem.exception.TestException;
 public interface TestDaoInterface {
 	
 	
-	Test getTest(int test_id) throws TestException;
+	Test getTest(String testId) throws TestException;
 	public List<Test> getTest();
+
 
 }

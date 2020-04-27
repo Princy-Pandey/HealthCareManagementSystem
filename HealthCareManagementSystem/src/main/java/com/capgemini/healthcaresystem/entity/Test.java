@@ -1,10 +1,3 @@
-/************************************************************************************
- *          @author          Kiran Rajput
- *          Description      It is a A  testEntity class that provides testEntity for Healthcare system, 
-                                         and viewing all its conponents  
-  *         Version             1.0
-  *         Created Date    26-APR-2020
- ************************************************************************************/
 package com.capgemini.healthcaresystem.entity;
 
 import javax.persistence.CascadeType;
@@ -24,76 +17,86 @@ import lombok.Data;
 
 
 
-@Data
+/************************************************************************************
+ *          @author          Princy Pandey
+ *          Description      It is a entity class that provides the entites for 
+ *                           test inside diagnostic centre made by admin .
+ *          Version             1.0
+ *          Created Date    20-APR-2020
+ ************************************************************************************/
+
+
 @Entity
 @Table(name= "TEST")
-@DynamicUpdate(true)
-@DynamicInsert(true)
 public class Test {
 	
-	//Id 
+	
+	/*************Test Id ****************/
 	@Id
-	@Column(name= "TEST_ID")
-	private int test_id;
-	
-    @Column(name= "TEST_NAME")
-	private String test_name;
-	
-    
-    
-    
-    //Name
+	@Column(name= "TEST_ID",length=20)
+	private String testId;
 	
 	
+	/*************Test Id ****************/
+    @Column(name= "TEST_NAME",length=25)
+	private String testName;
 	
     
-	//Foreign key
+    /*************Centre Id ****************/
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name= "CENTRE",referencedColumnName = "centre_id" )
-	private DiagnosticCentre centre;
-	
-	
-	//Getters and Setters
-	public int getTest_id() {
-		return test_id;
-	}
-	public void setTest_id(int test_id) {
-		this.test_id = test_id;
-	}
-	
-    public String getTest_name() {
-		return test_name;
-	}
-	public void setTest_name(String test_name) {
-		this.test_name = test_name;
+	@JoinColumn(name= "DIAGNOSTIC_CENTRE",referencedColumnName = "centre_id" )
+	private DiagnosticCentre diagnosticCentre;
+
+
+	/**************Getters and Setters***********/
+	public String getTestId() {
+		return testId;
 	}
 
-	public DiagnosticCentre getCenter() {
-		return centre;
-	}
-	public void setCentre(DiagnosticCentre centre) {
-		this.centre = centre;
-		//centre.getTest().add(this);
+
+	public void setTestId(String testId) {
+		this.testId = testId;
 	}
 
-	
-	//Default Constructors
+
+	public String getTestName() {
+		return testName;
+	}
+
+
+	public void setTestName(String testName) {
+		this.testName = testName;
+	}
+
+
+	public DiagnosticCentre getCentre() {
+		return diagnosticCentre;
+	}
+
+
+	public void setCentre(DiagnosticCentre diagnosticCentre) {
+		this.diagnosticCentre = diagnosticCentre;
+	}
+
+	/**************Default Constructor**************/
 	public Test() {}
+
 	
-	
-	//Parameterized Constructors
-	public Test(int test_id, String test_name, DiagnosticCentre centre) {
+	/************Parameterized Constructor***********/
+	public Test(String testId, String testName, DiagnosticCentre diagnosticCentre) {
 		super();
-		this.test_id = test_id;
-		this.test_name = test_name;
-		this.centre=centre;
+		this.testId = testId;
+		this.testName = testName;
+		this.diagnosticCentre = diagnosticCentre;
 	}
-	
-	
+
+
 	@Override
 	public String toString() {
-		return "Test [test_id=" + test_id + ", test_name=" + test_name+ ", centre="+ centre+ "]";
+		return "Test [testId=" + testId + ", testName=" + testName + ", centre=" + diagnosticCentre + "]";
 	}
+	
+	
 	
 	
 }

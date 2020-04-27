@@ -14,7 +14,8 @@ import com.capgemini.healthcaresystem.exception.CentreException;
 
 public interface DiagnosticCentreDaoInterface {
 	
-	boolean addCentre(DiagnosticCentre centre);
-	DiagnosticCentre getCentre(int centre_id) throws CentreException;
+	public boolean addCentre(DiagnosticCentre diagnosticCentre);
+	DiagnosticCentre getCentre(String centreId) throws CentreException;
 	public List<DiagnosticCentre> getCentre();
 }
+

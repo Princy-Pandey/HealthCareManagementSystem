@@ -73,8 +73,8 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	@Override
 	public void addAppointment( Appointment appointment) throws TestException{
 		// TODO Auto-generated method stub
-		Test tobj=tdao.getTest(appointment.getTest().getTest_id());
-		Appointment obj=new Appointment(appointment.getAppointment_id(),appointment.getAppointment_date(),appointment.getAppointment_time(),tobj);
+		Test tobj=tdao.getTest(appointment.getTest().getTestId());
+		Appointment obj=new Appointment(appointment.getAppointmentId(),appointment.getAppointmentDate(),appointment.getAppointmentTime(),tobj);
 		adao.addAppointment(obj);
 	}
 

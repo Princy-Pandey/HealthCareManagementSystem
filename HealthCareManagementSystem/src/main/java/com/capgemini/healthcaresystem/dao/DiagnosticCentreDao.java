@@ -1,10 +1,3 @@
-/************************************************************************************
- *          @author          Kiran Rajput
- *          Description      It is a A CentreDao class that provides CentreDao for Healthcare system, 
-                                         and viewing all its conponents  
-  *         Version             1.0
-  *         Created Date    20-APR-2020
- ************************************************************************************/
 package com.capgemini.healthcaresystem.dao;
 
 import java.util.List;
@@ -20,7 +13,7 @@ import com.capgemini.healthcaresystem.exception.CentreException;
 
 
 /************************************************************************************
- *          @author          Princy Pandey
+ *          @author          Kiran Rajput
  *          Description      It is a dao class that provides the methods for adding
  *                           and removing centre 
  *          Version             1.0
@@ -60,18 +53,19 @@ public class DiagnosticCentreDao implements DiagnosticCentreDaoInterface {
 	
 	
 	@Override
-	public DiagnosticCentre getCentre(int centre_id) throws CentreException {
+	public DiagnosticCentre getCentre(String centreId) throws CentreException {
 		// TODO Auto-generated method stub
-		DiagnosticCentre centre=em.find(DiagnosticCentre.class, centre_id);
-		if(centre==null) throw new CentreException("Centre Id not exist for "+ centre_id);
-		return centre;
+		DiagnosticCentre diagnosticCentre=em.find(DiagnosticCentre.class, centreId);
+		if(diagnosticCentre==null) throw new CentreException("Centre Id does not exist for "+ centreId);
+		return diagnosticCentre;
 	}
 
 	@Override
 	public List<DiagnosticCentre> getCentre() {
 		// TODO Auto-generated method stub
-		TypedQuery<DiagnosticCentre> query=em.createQuery("from Centre", DiagnosticCentre.class);
-		return query.getResultList();
+		TypedQuery<DiagnosticCentre> query=em.createQuery("from DiagnosticCentre", DiagnosticCentre.class);
+		List<DiagnosticCentre> list1=query.getResultList();
+		return list1;
 	}
 
 	

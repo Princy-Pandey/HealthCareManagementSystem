@@ -13,7 +13,7 @@ import com.capgemini.healthcaresystem.entity.ShowAppointment;
 import com.capgemini.healthcaresystem.exception.AppointmentException;
 
 public interface ShowAppointmentDaoInterface {
-	ShowAppointment showAppointment(int appointment_id) throws AppointmentException;
+	ShowAppointment showAppointment(int appointmentId) throws AppointmentException;
 	public List<ShowAppointment> showAppointment();
 
 

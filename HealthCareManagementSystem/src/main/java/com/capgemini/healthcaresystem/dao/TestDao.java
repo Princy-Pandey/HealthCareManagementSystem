@@ -30,12 +30,11 @@ public class TestDao implements TestDaoInterface {
 	 * @param getTest                 Fetches all test  
 	 * @throws TestException          It is raised due to test id does not exist
 	 ************************************************************************************/
-
 	@Override
-	public Test getTest(int test_id) throws TestException {
+	public Test getTest(String testId) throws TestException {
 		// TODO Auto-generated method stub
-		Test test=em.find(Test.class, test_id);
-		if(test==null) throw new TestException("Test Id not exist for "+ test_id);
+		Test test=em.find(Test.class, testId);
+		if(test==null) throw new TestException("Test Id does not exist for "+ testId);
 		return test;
 	}
 
@@ -46,6 +45,7 @@ public class TestDao implements TestDaoInterface {
 		return query.getResultList();
 	}
 
+	
 	
 
 }

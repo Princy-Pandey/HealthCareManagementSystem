@@ -30,35 +30,29 @@ import lombok.Data;
 public class Appointment
 {
 	
-
+	/*************Appointment Id ****************/
+	public void setAppointmentId(int appointmentId) {
+		this.appointmentId = appointmentId;
+	}
+	
 	/*************Appointment Id ****************/
 	@Id
-	private int appointment_id;
+	@Column(name= "APPOINTMENT_ID",length=10)
+	private long appointmentId;
 	
-	/*************Appointment Date ****************/
-	public int getAppointment_id() {
-		return appointment_id;
-	}
-	
-	/*************Appointment Id ****************/
-	public void setAppointment_id(int appointment_id) {
-		this.appointment_id = appointment_id;
-	}
 	/**************Appointment Date**************/
-
 	@Column(name= "APPOINTMENT_DATE")
-	private String appointment_date;
+	private String appointmentDate;
+	
+	
+	
 	
     /**************Appointment Time**************/
-    
 	@Column(name= "APPOINTMENT_TIME")
-	private String appointment_time;
+	private String appointmentTime;
 	
-	//Centre NAme 
-		/*@ManyToOne(cascade=CascadeType.ALL)
-		@JoinColumn(name= "CENTRE",referencedColumnName = "centre_id" )
-		private Centre centre;
-		*/
+
+	
 		@ManyToOne(cascade=CascadeType.ALL)
 		@JoinColumn(name= "TEST",referencedColumnName = "test_id" )
 		private Test test;
@@ -68,24 +62,32 @@ public class Appointment
 		/**************Getters and Setters***********/
 		
 
-		public String getAppointment_date() {
-			return appointment_date;
+		public Appointment() {}
+
+		public long getAppointmentId() {
+			return appointmentId;
 		}
 
-		public void setAppointment_date(String appointment_date) {
-			this.appointment_date = appointment_date;
+		public void setAppointmentId(long appointmentId) {
+			this.appointmentId = appointmentId;
 		}
 
-		public String getAppointment_time() {
-			return appointment_time;
+		public String getAppointmentDate() {
+			return appointmentDate;
 		}
 
-		public void setAppointment_time(String appointment_time) {
-			this.appointment_time = appointment_time;
+		public void setAppointmentDate(String appointmentDate) {
+			this.appointmentDate = appointmentDate;
 		}
 
-		
-		
+		public String getAppointmentTime() {
+			return appointmentTime;
+		}
+
+		public void setAppointmentTime(String appointmentTime) {
+			this.appointmentTime = appointmentTime;
+		}
+
 		public Test getTest() {
 			return test;
 		}
@@ -93,23 +95,19 @@ public class Appointment
 		public void setTest(Test test) {
 			this.test = test;
 		}
-		
-		
-		public Appointment() {}
 
-		public Appointment(int appointment_id, String appointment_date, String appointment_time,Test test) {
+		public Appointment(long appointmentId, String appointmentDate, String appointmentTime,Test test) {
 			super();
-			this.appointment_id = appointment_id;
-			this.appointment_date = appointment_date;
-			this.appointment_time = appointment_time;
-			//this.centre = centre;
+			this.appointmentId = appointmentId;
+			this.appointmentDate = appointmentDate;
+			this.appointmentTime = appointmentTime;
 			this.test=test;
 		}
 
 		@Override
 		public String toString() {
-			return "AddAppointment [appointment_id=" + appointment_id + ", appointment_date=" + appointment_date
-					+ ", appointment_time=" + appointment_time + ", test= "+test+ "]";
+			return "AddAppointment [appointmentId=" + appointmentId + ", appointmentDate=" + appointmentDate
+					+ ", appointmentTime=" + appointmentTime + ", test= "+test+ "]";
 		}
 
 		

@@ -20,8 +20,9 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import lombok.Data;
 
+
 /************************************************************************************
- *          @author         Kiran Rajput
+ *          @author          Princy Pandey
  *          Description      It is a entity class that provides the entites for 
  *                           diagnostic centre made by admin .
  *          Version             1.0
@@ -29,61 +30,90 @@ import lombok.Data;
  ************************************************************************************/
 
 
-
-@Data
 @Entity()
-@Table(name= "CENTRE")
-@DynamicUpdate(true)
-@DynamicInsert(true)
-public class DiagnosticCentre {
+@Table(name= "DIAGNOSTICCENTRE")
+public class DiagnosticCentre{
+	
 	
 	/*************Centre Id ****************/
 	@Id
 	@Column(name= "CENTRE_ID")
-	private int centre_id;
+	private String centreId;
     
 	/*************Centre Name ****************/
-    @Column(name= "CENTRE_NAME")
-	private String centre_name;
-	
+    @Column(name= "CENTRE_NAME",length=25)
+	private String centreName;
     
-	
+    /*********Centre Contact Number **********/
+    @Column(name= "CENTRE_CONTACT_NUMBER",length=11)
+   	private long centreContactNumber;
     
+    /*************Centre Address **************/
+    @Column(name= "CENTRE_ADDRESS",length=50)
+   	private String centreAddress;
 
-    
-    
-	
+
+
     /**************Getters and Setters***********/
-    public long getCentre_id() {
-		return centre_id;
-	}
-	public void setCentre_id(int centre_id) {
-		this.centre_id = centre_id;
+    public String getCentreId() {
+		return centreId;
 	}
 
-	public String getCentre_name() {
-		return centre_name;
+
+	public void setCentreId(String centreId) {
+		this.centreId = centreId;
 	}
-	public void setCentre_name(String centre_name) {
-		this.centre_name = centre_name;
+
+
+	public String getCentreName() {
+		return centreName;
+	}
+
+
+	public void setCentreName(String centreName) {
+		this.centreName = centreName;
+	}
+
+
+	public long getCentreContactNumber() {
+		return centreContactNumber;
+	}
+
+
+	public void setCentreContactNumber(long centreContactNumber) {
+		this.centreContactNumber = centreContactNumber;
+	}
+
+
+	public String getCentreAddress() {
+		return centreAddress;
+	}
+
+
+	public void setCentreAddress(String centreAddress) {
+		this.centreAddress = centreAddress;
 	}
 	
 	/**************Default Constructor**************/
 	public DiagnosticCentre() {}
 	
+	
 	/************Parameterized Constructor***********/
-	public DiagnosticCentre(int centre_id, String centre_name) {
-		super();
-		this.centre_id = centre_id;
-		this.centre_name = centre_name;
-		
-	}
-	
-	
-	@Override
+	public DiagnosticCentre(String centreId, String centreName, long centreContactNumber, String centreAddress) {
+			super();
+			this.centreId = centreId;
+			this.centreName = centreName;
+			this.centreContactNumber = centreContactNumber;
+			this.centreAddress = centreAddress;
+		}
+
+
+		@Override
 	public String toString() {
-		return "Centre [centre_id=" + centre_id + ", centre_name=" + centre_name +"]";
-	}
-	
+			return "Centre [centreId=" + centreId + ", centreName=" + centreName + ", centreContactNumber="
+					+ centreContactNumber + ", centreAddress=" + centreAddress + "]";
+		}
+		
+		
 	
 }

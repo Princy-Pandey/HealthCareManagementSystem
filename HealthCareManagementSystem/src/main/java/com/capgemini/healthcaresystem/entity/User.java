@@ -15,7 +15,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import lombok.Data;
 
 /************************************************************************************
- *          @author         Kiran Rajput
+ *          @author          Princy Pandey
  *          Description      It is a entity class that provides the entites for 
  *                           user registered .
  *          Version             1.0
@@ -23,112 +23,125 @@ import lombok.Data;
  ************************************************************************************/
 
 
-@Data
+
 @Entity
 @Table(name= "USER")
-@DynamicUpdate(true)
-@DynamicInsert(true)
 public class User {
-	
 	
 	/*************User Id ****************/
 	@Id
-	@Column(name= "USER_ID")
-	private int user_id;
+	@Column(name= "USER_ID",length=20)
+	private String userId;
     
-	/*************User Name ****************/    
-	@Column(name= "USER_NAME")
-	private String user_name;
+	/*************User Name ****************/
+	@Column(name= "USER_NAME",length=25)
+	private String userName;
     
     
 	/**********User Contact Number *********/
-	@Column(name= "USER_CONTACT_NO")
-	private long user_contact_no;
+	@Column(name= "USER_CONTACT_NO",length=10)
+	private long userContactNumber;
 	
-    
 	/**********User Email Id **************/
-	@Column(name= "USER_EMAIL")
-	private String user_email;
+	@Column(name= "USER_EMAIL",length=25)
+	private String userEmail;
     
 	/*************User Age****************/
-	@Column(name= "USER_AGE")
-	private int user_age;
+	@Column(name= "USER_AGE",length=10)
+	private int userAge;
 	
     
 	/*************User Gender****************/
-	@Column(name= "USER_GENDER")
-	private String user_gender;
-    
-    
-    
+	@Column(name= "USER_GENDER",length=25)
+	private String userGender;
+
+	
 	/**************Getters and Setters***********/
-	public int getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
-	}
-	
-	public String getUser_name() {
-		return user_name;
-	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
-	
-	public long getUser_contact_no() {
-		return user_contact_no;
-	}
-	public void setUser_contact_no(long user_contact_no) {
-		this.user_contact_no = user_contact_no;
-	}
-	
-	public String getUser_email() {
-		return user_email;
-	}
-	public void setUser_email(String user_email) {
-		this.user_email = user_email;
+	public String getUserId() {
+		return userId;
 	}
 
-	public int getUser_age() {
-		return user_age;
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public void setUser_age(int user_age) {
-		this.user_age = user_age;
+
+
+	public String getUserName() {
+		return userName;
 	}
-	
-	public String getUser_gender() {
-		return user_gender;
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public void setUser_gender(String user_gender) {
-		this.user_gender = user_gender;
+
+
+	public long getUserContactNumber() {
+		return userContactNumber;
 	}
-	
+
+
+	public void setUserContactNumber(long userContactNumber) {
+		this.userContactNumber = userContactNumber;
+	}
+
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
+
+	public int getUserAge() {
+		return userAge;
+	}
+
+
+	public void setUserAge(int userAge) {
+		this.userAge = userAge;
+	}
+
+
+	public String getUserGender() {
+		return userGender;
+	}
+
+
+	public void setUserGender(String userGender) {
+		this.userGender = userGender;
+	}
 	
 	
 	/**************Default Constructor**************/
 	public User() {}
-	
-	
-	
+
+
 	/************Parameterized Constructor***********/
-	public User( int user_id, String user_name, long user_contact_no,String user_email,int user_age,String user_gender) {
+	public User(String userId, String userName, long userContactNumber, String userEmail, int userAge,
+			String userGender) {
 		super();
-		this.user_id = user_id;
-		this.user_name = user_name;
-		this.user_contact_no = user_contact_no;
-		this.user_email = user_email;
-		this.user_age = user_age;
-		this.user_gender = user_gender;
+		this.userId = userId;
+		this.userName = userName;
+		this.userContactNumber = userContactNumber;
+		this.userEmail = userEmail;
+		this.userAge = userAge;
+		this.userGender = userGender;
 	}
-	
-	
+
+
 	@Override
 	public String toString() {
-		return "User [user_id=" + user_id + ", user_name=" + user_name + ", user_contact_no=" + user_contact_no
-				+ ", user_email=" + user_email + ", user_age=" + user_age + ", user_gender=" + user_gender + "]";
+		return "User [userId=" + userId + ", userName=" + userName + ", userContactNumber=" + userContactNumber
+				+ ", userEmail=" + userEmail + ", userAge=" + userAge + ", userGender=" + userGender + "]";
 	}
-	
-	
+    
+    
+    
+    
 	
 }

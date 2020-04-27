@@ -33,10 +33,10 @@ public class ShowAppointmentDao implements ShowAppointmentDaoInterface{
 
 
 	@Override
-	public ShowAppointment showAppointment(int appointment_id) throws AppointmentException {
+	public ShowAppointment showAppointment(int appointmentId) throws AppointmentException {
 		// TODO Auto-generated method stub 
-		ShowAppointment appointment=em.find(ShowAppointment.class, appointment_id);
-		if(appointment==null) throw new AppointmentException("Appointment Id not exist for "+ appointment_id);
+		ShowAppointment appointment=em.find(ShowAppointment.class, appointmentId);
+		if(appointment==null) throw new AppointmentException("Appointment Id not exist for "+ appointmentId);
 		return appointment;
 	}
 
