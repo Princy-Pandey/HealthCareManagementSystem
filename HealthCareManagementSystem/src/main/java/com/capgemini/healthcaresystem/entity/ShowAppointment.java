@@ -1,10 +1,3 @@
-/************************************************************************************
- *          @author          Kiran Rajput
- *          Description      It is a A  ShowAppointmentEntity class that provides ShowAppointmentEntity for Healthcare system, 
-                                         and viewing all its conponents  
-  *         Version             1.0
-  *         Created Date    26-APR-2020
- ************************************************************************************/
 package com.capgemini.healthcaresystem.entity;
 
 import javax.persistence.Column;
@@ -13,49 +6,50 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+/************************************************************************************
+ *          @author          Princy Pandey
+ *          Description      It is a entity class that provides the entites for 
+ *                           appointment made by user .
+ *          Version             1.0
+ *          Created Date    20-APR-2020
+ ************************************************************************************/
+
 
 @Entity
 @Table(name= "SHOWAPPOINTMENT")
 public class ShowAppointment {
 	
 	
-	//Appointment Id 
-    
+	/*************Appointment Id ****************/    
 	@Id
 	@Column(name= "APPOINTMENT_ID")
 	private int appointment_id;
 	
-    //User Id 
+    /***************User Id**********************/
 	@ManyToOne()
 	@JoinColumn(name= "USER_ID", referencedColumnName ="USER_ID")
-	
 	private User user_id;
     
-    //Test Id 
+    /****************Test Id*********************/ 
 	@ManyToOne()
 	@JoinColumn(name= "TEST_ID", referencedColumnName ="TEST_ID")
-	
 	private Test test_id;
 	
-    //Centre Id 
+    /****************Centre Id*******************/ 
 	@ManyToOne()
 	@JoinColumn(name= "CENTRE_ID", referencedColumnName ="CENTRE_ID")
-	
-	private Centre centre_id;
+	private DiagnosticCentre centre_id;
     
     
-	//Appointment Date
-    
+	/**************Appointment Date**************/    
 	@Column(name= "APPOINTMENT_DATE")
 	private String appointment_date;
 	
-    //Appointment Time
-    
+    /**************Appointment Time**************/
 	@Column(name= "APPOINTMENT_TIME")
 	private String appointment_time;
 	
-    //Appointment Approval Status
-    
+    /********Appointment Approval Status*********/
 	@Column(name= "APPROVAL_STATUS")
 	private String approval_status;
     
@@ -82,10 +76,10 @@ public class ShowAppointment {
 		this.test_id = test_id;
 	}
 
-	public Centre getCentre_id() {
+	public DiagnosticCentre getCentre_id() {
 		return centre_id;
 	}
-	public void setCentre_id(Centre centre_id) {
+	public void setCentre_id(DiagnosticCentre centre_id) {
 		this.centre_id = centre_id;
 	}
 
@@ -108,7 +102,7 @@ public class ShowAppointment {
 	
 	
 	//Parameterized Constructor
-	public ShowAppointment(int appointment_id,User user_id,Test test_id,Centre centre_id,String appointment_date,String appointment_time,String approval_status) 
+	public ShowAppointment(int appointment_id,User user_id,Test test_id,DiagnosticCentre centre_id,String appointment_date,String appointment_time,String approval_status) 
 	{
 		super();
 		this.appointment_id = appointment_id;

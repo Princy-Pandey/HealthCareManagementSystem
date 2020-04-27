@@ -1,10 +1,3 @@
-/************************************************************************************
- *          @author          Kiran Rajput
- *          Description      It is a A UserDao class that provides UserDao for Healthcare system, 
-                                         and viewing all its conponents  
-  *         Version             1.0
-  *         Created Date    26-APR-2020
- ************************************************************************************/
 package com.capgemini.healthcaresystem.dao;
 
 import java.util.List;
@@ -16,6 +9,13 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.healthcaresystem.entity.User;
 import com.capgemini.healthcaresystem.exception.UserException;
 
+/************************************************************************************
+ *          @author          Princy Pandey
+ *          Description      It is a dao class that provides the methods to fetch 
+ *                           user's details
+ *          Version          1.0
+ *          Created Date     20-APR-2020
+ ************************************************************************************/
 
 
 @Repository
@@ -24,6 +24,15 @@ public class UserDao implements UserDaoInterface{
 	@PersistenceContext
 	EntityManager em;
 
+	/************************************************************************************
+	 * Method:                        getUser
+     * Description:                   To fetch the user details provided by him during 
+     *                                registration 
+	 * @param getUser                 Fetches all details of user  
+	 * @throws UserException          It is raised due to user id does not exist
+	 ************************************************************************************/
+	
+	
 	@Override
 	public User getUser(int user_id) throws UserException {
 		// TODO Auto-generated method stub

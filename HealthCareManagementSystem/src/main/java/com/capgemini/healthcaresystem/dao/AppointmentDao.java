@@ -3,7 +3,7 @@
  *          Description      It is a A AppointmentDao class that provides appointment for Healthcare system, 
                                          and viewing all its conponents  
   *         Version             1.0
-  *         Created Date    26-APR-2020
+  *         Created Date    20-APR-2020
  ************************************************************************************/
 
 package com.capgemini.healthcaresystem.dao;
@@ -25,9 +25,17 @@ public class AppointmentDao implements AppointmentDaoInterface{
 	
 	@PersistenceContext
 	EntityManager em;
+	
+	/************************************************************************************
+	 * Method:                        getAppointment
+     * Description:                   To fetch the appointment made by user 
+	 * @param getAppointment          Appointment made
+	 * @throws AppointmentException   It is raised due to appointment id does not exist
+	 ************************************************************************************/
+
 
 	@Override
-	public Appointment getAppointment(int appointment_id) throws AppointmentException {
+	public Appointment getAppointment(long appointment_id) throws AppointmentException {
 		// TODO Auto-generated method stub 
 		Appointment appointment=em.find(Appointment.class, appointment_id);
 		if(appointment==null) throw new AppointmentException("Appointment Id not exist for "+ appointment_id);

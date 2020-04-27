@@ -1,10 +1,3 @@
-/************************************************************************************
- *          @author          Kiran Rajput
- *          Description      It is a Controller class that provides contrrols for Healthcare system, 
-                                         and viewing all the conponents  
-  *         Version             1.0
-  *         Created Date    26-APR-2020
- ************************************************************************************/
 
 package com.capgemini.healthcaresystem.controller;
 
@@ -27,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.healthcaresystem.entity.Appointment;
-import com.capgemini.healthcaresystem.entity.Centre;
+import com.capgemini.healthcaresystem.entity.DiagnosticCentre;
 import com.capgemini.healthcaresystem.entity.ShowAppointment;
 import com.capgemini.healthcaresystem.entity.Test;
 import com.capgemini.healthcaresystem.exception.AppointmentException;
@@ -35,6 +28,14 @@ import com.capgemini.healthcaresystem.exception.CentreException;
 import com.capgemini.healthcaresystem.exception.TestException;
 import com.capgemini.healthcaresystem.service.HealthCareSystemServiceInterface;
 
+/************************************************************************************
+*          @author          Kiran Rajput
+*          Description      It is a controller class that process action for 
+*                           adding,removing and displaying centre,test,user and
+*                           appointments
+*          Version          1.0
+*          Created Date     22-APR-2020
+************************************************************************************/
 
 
 
@@ -46,6 +47,13 @@ public class HealthCareSystemController {
 	private HealthCareSystemServiceInterface serviceinterfaceObject;
 	
 	
+	/************************************************************************************
+	 * Method:                       getAppointment
+     * Description:                  To get appointment made by user
+	 * @param getAppointment         Display appointment details
+	 * @mapping GetMapping           Make HTTP request to get all appointments 
+	************************************************************************************/
+
 	//Appointment Controller
 	@GetMapping("/getAppointment")
 	public List<Appointment> getAppointment() throws AppointmentException
@@ -82,6 +90,12 @@ public class HealthCareSystemController {
 	
 	
 	//Test Controller
+	/************************************************************************************
+	 * Method:                       getTest
+     * Description:                  To get details of test present in centre
+	 * @param getTest                Display test details
+	 * @mapping GetMapping           Make HTTP request to get all test 
+	************************************************************************************/
 	
 	@GetMapping("/getTest")
 	public List<Test> getTest() throws TestException
@@ -92,9 +106,15 @@ public class HealthCareSystemController {
 	
 	
 	//Centre Controller
+	/************************************************************************************
+	 * Method:                       getCentre
+     * Description:                  To get details of  centre
+	 * @param getCentre              Display centre details
+	 * @mapping GetMapping           Make HTTP request to get all centre 
+	************************************************************************************/
 	
 	@GetMapping("/getCentre")
-	public List<Centre> getCentre() throws CentreException
+	public List<DiagnosticCentre> getCentre() throws CentreException
 	{
 		return serviceinterfaceObject.viewCentre();
 	}
@@ -103,16 +123,13 @@ public class HealthCareSystemController {
 	
 	
 	// Show Appointment
+
 	/************************************************************************************
-	 * Method: showAppointment
-     * Description: to show appointment to the healthcare system
-	
-	 * @param amt                           - to show an appointment 
-	 * @returns Boolean                     - true, if transferred otherwise throws TestException
-	 * Created By                           - kiran Rajput
-     * Created Date                         - 26-APR-2020                           
-	 
-	 ************************************************************************************/
+	 * Method:                       getAppointment
+     * Description:                  To get appointment made by user
+	 * @param getAppointment         Display appointment details
+	 * @mapping GetMapping           Make HTTP request to get all appointments 
+	************************************************************************************/
 	
 	@GetMapping("/showAppointment")
 	public List<ShowAppointment> showAppointment() throws AppointmentException

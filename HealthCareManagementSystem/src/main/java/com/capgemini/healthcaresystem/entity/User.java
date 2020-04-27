@@ -1,10 +1,3 @@
-/************************************************************************************
- *          @author          Kiran Rajput
- *          Description      It is a A  tUserEntity class that provides UserEntity for Healthcare system, 
-                                         and viewing all its conponents  
-  *         Version             1.0
-  *         Created Date    26-APR-2020
- ************************************************************************************/
 package com.capgemini.healthcaresystem.entity;
 
 import javax.persistence.Column;
@@ -21,6 +14,13 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import lombok.Data;
 
+/************************************************************************************
+ *          @author         Kiran Rajput
+ *          Description      It is a entity class that provides the entites for 
+ *                           user registered .
+ *          Version             1.0
+ *          Created Date    20-APR-2020
+ ************************************************************************************/
 
 
 @Data
@@ -31,42 +31,37 @@ import lombok.Data;
 public class User {
 	
 	
-	//Id 
-    
+	/*************User Id ****************/
 	@Id
 	@Column(name= "USER_ID")
 	private int user_id;
     
-    //Name
-    
+	/*************User Name ****************/    
 	@Column(name= "USER_NAME")
 	private String user_name;
     
     
-    //Contact-number
-    
+	/**********User Contact Number *********/
 	@Column(name= "USER_CONTACT_NO")
 	private long user_contact_no;
 	
-    //Email ID
     
+	/**********User Email Id **************/
 	@Column(name= "USER_EMAIL")
 	private String user_email;
     
-    //Age
-    
+	/*************User Age****************/
 	@Column(name= "USER_AGE")
 	private int user_age;
 	
     
-    //Gender
-    
+	/*************User Gender****************/
 	@Column(name= "USER_GENDER")
 	private String user_gender;
     
     
     
-    //Getters and Setters
+	/**************Getters and Setters***********/
 	public int getUser_id() {
 		return user_id;
 	}
@@ -111,12 +106,12 @@ public class User {
 	
 	
 	
-    //Default Constructor
+	/**************Default Constructor**************/
 	public User() {}
 	
 	
 	
-	//Parameterized Constructor
+	/************Parameterized Constructor***********/
 	public User( int user_id, String user_name, long user_contact_no,String user_email,int user_age,String user_gender) {
 		super();
 		this.user_id = user_id;

@@ -23,6 +23,14 @@ public class ShowAppointmentDao implements ShowAppointmentDaoInterface{
 	
 	@PersistenceContext
 	EntityManager em;
+	
+	/************************************************************************************
+	 * Method:                        showAppointment
+     * Description:                   To fetch the appointment made by user 
+	 * @param showAppointment          Appointment shown
+	 * @throws AppointmentException   It is raised due to appointment id does not exist
+	 ************************************************************************************/
+
 
 	@Override
 	public ShowAppointment showAppointment(int appointment_id) throws AppointmentException {

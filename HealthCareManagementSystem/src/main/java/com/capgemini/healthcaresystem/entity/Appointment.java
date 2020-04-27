@@ -1,10 +1,3 @@
-/************************************************************************************
- *          @author          Kiran Rajput
- *          Description      It is a A  appointmentEntity class that provides appointmentEntity for Healthcare system, 
-                                         and viewing all its conponents  
-  *         Version             1.0
-  *         Created Date    26-APR-2020
- ************************************************************************************/
 package com.capgemini.healthcaresystem.entity;
 
 import javax.persistence.CascadeType;
@@ -20,6 +13,15 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Data;
 
+/************************************************************************************
+ *          @author          Kiran Rajput
+ *          Description      It is a entity class that provides the entites for 
+ *                           appointment made by user .
+ *          Version             1.0
+ *          Created Date    20-APR-2020
+ ************************************************************************************/
+
+
 @Data
 @Entity
 @Table(name= "APPOINTMENT")
@@ -29,25 +31,25 @@ public class Appointment
 {
 	
 
-	//Appointment Id
-	
+	/*************Appointment Id ****************/
 	@Id
 	private int appointment_id;
 	
-    //Appointment Date
-    
+	/*************Appointment Date ****************/
 	public int getAppointment_id() {
 		return appointment_id;
 	}
-
+	
+	/*************Appointment Id ****************/
 	public void setAppointment_id(int appointment_id) {
 		this.appointment_id = appointment_id;
 	}
+	/**************Appointment Date**************/
 
 	@Column(name= "APPOINTMENT_DATE")
 	private String appointment_date;
 	
-    //Appointment Time
+    /**************Appointment Time**************/
     
 	@Column(name= "APPOINTMENT_TIME")
 	private String appointment_time;
@@ -63,6 +65,7 @@ public class Appointment
 		
 		
 		
+		/**************Getters and Setters***********/
 		
 
 		public String getAppointment_date() {
@@ -81,13 +84,7 @@ public class Appointment
 			this.appointment_time = appointment_time;
 		}
 
-		/*public Centre getCentre() {
-			return centre;
-		}
-
-		public void setCentre(Centre centre) {
-			this.centre = centre;
-		}*/
+		
 		
 		public Test getTest() {
 			return test;

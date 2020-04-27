@@ -1,10 +1,3 @@
-/************************************************************************************
- *          @author          Kiran Rajput
- *          Description      It is a A TestDao class that provides TestDao for Healthcare system, 
-                                         and viewing all its conponents  
-  *         Version             1.0
-  *         Created Date    26-APR-2020
- ************************************************************************************/
 package com.capgemini.healthcaresystem.dao;
 
 import java.util.List;
@@ -16,6 +9,13 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.healthcaresystem.entity.Test;
 import com.capgemini.healthcaresystem.exception.TestException;
 
+/************************************************************************************
+ *          @author          Kiran Rajput
+ *          Description      It is a dao class that provides the methods for adding
+ *                           and removing test in a centre 
+ *          Version          1.0
+ *          Created Date     20-APR-2020
+ ************************************************************************************/
 
 
 @Repository
@@ -23,6 +23,13 @@ public class TestDao implements TestDaoInterface {
 	
 	@PersistenceContext
 	EntityManager em;
+
+	/************************************************************************************
+	 * Method:                        getTest
+     * Description:                   To fetch the centre made by admin 
+	 * @param getTest                 Fetches all test  
+	 * @throws TestException          It is raised due to test id does not exist
+	 ************************************************************************************/
 
 	@Override
 	public Test getTest(int test_id) throws TestException {

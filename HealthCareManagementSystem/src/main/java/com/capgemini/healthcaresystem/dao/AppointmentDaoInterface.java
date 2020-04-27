@@ -18,7 +18,7 @@ public interface AppointmentDaoInterface {
 	
 	void addAppointment(Appointment appointment);
 
-	Appointment getAppointment(int appointment_id) throws AppointmentException;
+	Appointment getAppointment(long appointment_id) throws AppointmentException;
 	public List<Appointment> getAppointment();
 
 }

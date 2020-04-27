@@ -50,7 +50,7 @@ public class Test {
 	//Foreign key
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name= "CENTRE",referencedColumnName = "centre_id" )
-	private Centre centre;
+	private DiagnosticCentre centre;
 	
 	
 	//Getters and Setters
@@ -68,10 +68,10 @@ public class Test {
 		this.test_name = test_name;
 	}
 
-	public Centre getCenter() {
+	public DiagnosticCentre getCenter() {
 		return centre;
 	}
-	public void setCentre(Centre centre) {
+	public void setCentre(DiagnosticCentre centre) {
 		this.centre = centre;
 		//centre.getTest().add(this);
 	}
@@ -82,7 +82,7 @@ public class Test {
 	
 	
 	//Parameterized Constructors
-	public Test(int test_id, String test_name, Centre centre) {
+	public Test(int test_id, String test_name, DiagnosticCentre centre) {
 		super();
 		this.test_id = test_id;
 		this.test_name = test_name;

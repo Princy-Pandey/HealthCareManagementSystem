@@ -13,12 +13,14 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.capgemini.healthcaresystem.entity.Appointment;
-import com.capgemini.healthcaresystem.entity.Centre;
+import com.capgemini.healthcaresystem.entity.DiagnosticCentre;
 import com.capgemini.healthcaresystem.entity.ShowAppointment;
 import com.capgemini.healthcaresystem.entity.Test;
+import com.capgemini.healthcaresystem.entity.User;
 import com.capgemini.healthcaresystem.exception.AppointmentException;
 import com.capgemini.healthcaresystem.exception.CentreException;
 import com.capgemini.healthcaresystem.exception.TestException;
+import com.capgemini.healthcaresystem.exception.UserException;
 
 
 public interface HealthCareSystemServiceInterface {
@@ -31,9 +33,12 @@ public interface HealthCareSystemServiceInterface {
 	//Test
 	List<Test> viewTest() throws TestException;
 	
+	//User
+		List<User> viewUser() throws UserException;
+		
 	
 	//Centre
-	List<Centre> viewCentre() throws CentreException;
+	List<DiagnosticCentre> viewCentre() throws CentreException;
 	
 	List<ShowAppointment> showAppointment() throws AppointmentException;
 	
