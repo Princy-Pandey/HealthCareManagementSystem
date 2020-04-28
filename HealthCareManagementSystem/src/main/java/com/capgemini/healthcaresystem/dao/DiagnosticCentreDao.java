@@ -27,23 +27,7 @@ public class DiagnosticCentreDao implements DiagnosticCentreDaoInterface {
 	@PersistenceContext
 	private EntityManager em;
 
-	/************************************************************************************
-	 * Method:                        addCentre
-     * Description:                   To add centre in diagnostic centre
-	 * @param addCentre               Adding centre
-	 * @returns Boolean               true, if centre added otherwise 
-	 ************************************************************************************/
-
 	
-	@Override
-	public boolean addCentre(DiagnosticCentre centre) {
-		// TODO Auto-generated method stub
-		em.persist(centre);
-		return true;
-	}
-
-	
-
 	/************************************************************************************
 	 * Method:                        getCentre
      * Description:                   To fetch the centre made by admin 

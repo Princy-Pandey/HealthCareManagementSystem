@@ -12,7 +12,7 @@ import com.capgemini.healthcaresystem.exception.TestException;
 /************************************************************************************
  *          @author          Kiran Rajput
  *          Description      It is a dao class that provides the methods for adding
- *                           and removing test in a centre 
+ *                           and removing test in a test 
  *          Version          1.0
  *          Created Date     20-APR-2020
  ************************************************************************************/
@@ -26,7 +26,7 @@ public class TestDao implements TestDaoInterface {
 
 	/************************************************************************************
 	 * Method:                        getTest
-     * Description:                   To fetch the centre made by admin 
+     * Description:                   To fetch the test made by admin 
 	 * @param getTest                 Fetches all test  
 	 * @throws TestException          It is raised due to test id does not exist
 	 ************************************************************************************/

@@ -1,11 +1,3 @@
-/************************************************************************************
- *          @author          Kiran Rajput
- *          Description      It is a A AppointmentDao class that provides appointment for Healthcare system, 
-                                         and viewing all its conponents  
-  *         Version             1.0
-  *         Created Date    20-APR-2020
- ************************************************************************************/
-
 package com.capgemini.healthcaresystem.dao;
 
 import java.util.List;
@@ -13,12 +5,18 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Repository;
 import com.capgemini.healthcaresystem.entity.Appointment;
 import com.capgemini.healthcaresystem.exception.AppointmentException;
 
+
+/************************************************************************************
+ *          @author          Kiran Rajput
+ *          Description      It is a dao class that provides the methods for showing
+ *                           and adding appointment 
+ *          Version             1.0
+ *          Created Date     20-APR-2020
+ ************************************************************************************/
 
 @Repository
 public class AppointmentDao implements AppointmentDaoInterface{

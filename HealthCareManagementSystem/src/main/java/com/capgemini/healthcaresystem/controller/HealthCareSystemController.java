@@ -3,18 +3,13 @@ package com.capgemini.healthcaresystem.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,7 +34,7 @@ import com.capgemini.healthcaresystem.service.HealthCareSystemServiceInterface;
 
 
 
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class HealthCareSystemController {
 
@@ -125,9 +120,9 @@ public class HealthCareSystemController {
 	// Show Appointment
 
 	/************************************************************************************
-	 * Method:                       getAppointment
-     * Description:                  To get appointment made by user
-	 * @param getAppointment         Display appointment details
+	 * Method:                       showAppointment
+     * Description:                  To show appointment status
+	 * @param showAppointment        Display appointment details
 	 * @mapping GetMapping           Make HTTP request to get all appointments 
 	************************************************************************************/
 	

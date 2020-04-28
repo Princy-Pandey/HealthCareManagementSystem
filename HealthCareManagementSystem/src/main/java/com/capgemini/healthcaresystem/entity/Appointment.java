@@ -1,5 +1,7 @@
 package com.capgemini.healthcaresystem.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,10 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
-import lombok.Data;
 
 /************************************************************************************
  *          @author          Kiran Rajput
@@ -22,18 +21,13 @@ import lombok.Data;
  ************************************************************************************/
 
 
-@Data
+
 @Entity
 @Table(name= "APPOINTMENT")
-@DynamicUpdate(true)
-@DynamicInsert(true)
 public class Appointment
 {
 	
-	/*************Appointment Id ****************/
-	public void setAppointmentId(int appointmentId) {
-		this.appointmentId = appointmentId;
-	}
+	
 	
 	/*************Appointment Id ****************/
 	@Id
@@ -42,7 +36,7 @@ public class Appointment
 	
 	/**************Appointment Date**************/
 	@Column(name= "APPOINTMENT_DATE")
-	private String appointmentDate;
+	private LocalDate appointmentDate;
 	
 	
 	
@@ -72,11 +66,11 @@ public class Appointment
 			this.appointmentId = appointmentId;
 		}
 
-		public String getAppointmentDate() {
+		public LocalDate getAppointmentDate() {
 			return appointmentDate;
 		}
 
-		public void setAppointmentDate(String appointmentDate) {
+		public void setAppointmentDate(LocalDate appointmentDate) {
 			this.appointmentDate = appointmentDate;
 		}
 
@@ -96,7 +90,7 @@ public class Appointment
 			this.test = test;
 		}
 
-		public Appointment(long appointmentId, String appointmentDate, String appointmentTime,Test test) {
+		public Appointment(long appointmentId, LocalDate appointmentDate, String appointmentTime,Test test) {
 			super();
 			this.appointmentId = appointmentId;
 			this.appointmentDate = appointmentDate;

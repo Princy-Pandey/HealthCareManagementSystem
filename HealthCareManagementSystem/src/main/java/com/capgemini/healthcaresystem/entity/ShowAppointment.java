@@ -1,5 +1,7 @@
 package com.capgemini.healthcaresystem.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -43,7 +45,7 @@ public class ShowAppointment {
     
 	/**************Appointment Date**************/
 	@Column(name= "APPOINTMENT_DATE")
-	private String appointmentDate;
+	private LocalDate appointmentDate;
 	
     /**************Appointment Time**************/
 	@Column(name= "APPOINTMENT_TIME")
@@ -89,6 +91,14 @@ public class ShowAppointment {
 		this.centreId = centreId;
 	}
 
+	public LocalDate getAppointmentDate() {
+		return appointmentDate;
+	}
+
+	public void setAppointmentDate(LocalDate appointmentDate) {
+		this.appointmentDate = appointmentDate;
+	}
+
 	public String getAppointmentTime() {
 		return appointmentTime;
 	}
@@ -109,7 +119,7 @@ public class ShowAppointment {
 	public ShowAppointment() {}
 	
 	/************Parameterized Constructor***********/
-	public ShowAppointment(long appointmentId, User userId, Test testId, DiagnosticCentre centreId, String appointmentDate,
+	public ShowAppointment(long appointmentId, User userId, Test testId, DiagnosticCentre centreId, LocalDate appointmentDate,
 			String appointmentTime, boolean approvalStatus) {
 		super();
 		this.appointmentId = appointmentId;

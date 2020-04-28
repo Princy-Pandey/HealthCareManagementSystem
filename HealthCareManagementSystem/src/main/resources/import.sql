@@ -37,13 +37,13 @@ INSERT INTO `user` (user_id,user_age,user_contact_no,user_email,user_gender,user
 
 /*********************************************************************************APPOINTMENT DATA***************************************************************************/
 
-INSERT INTO `appointment` (appointment_id,appointment_date,appointment_time,test) VALUES (1,'2342020','8:05pm',1);
-INSERT INTO `appointment` (appointment_id,appointment_date,appointment_time,test) VALUES (2,'2342020','8:05pm',1);
+INSERT INTO `appointment` (appointment_id,appointment_date,appointment_time,test) VALUES (1,'2020-4-24','8:05pm',1);
+INSERT INTO `appointment` (appointment_id,appointment_date,appointment_time,test) VALUES (2,'2020-4-23','8:05pm',1);
 
 /*********************************************************************************SHOW APPOINTMENT DATA***************************************************************************/
 
-INSERT INTO `showappointment` (appointment_id,approval_status,appointment_date,appointment_time,centre_id,user_id,test_id) VALUES (1,true,'23-4-2020','8:05pm','1','1','1');
-INSERT INTO `showappointment` (appointment_id,approval_status,appointment_date,appointment_time,centre_id,user_id,test_id) VALUES (2,false,'24-4-2020','9:05am','2','2','2');
-INSERT INTO `showappointment` (appointment_id,approval_status,appointment_date,appointment_time,centre_id,user_id,test_id) VALUES (3,true,'25-4-2020','10:05am','3','3','3');
-INSERT INTO `showappointment` (appointment_id,approval_status,appointment_date,appointment_time,centre_id,user_id,test_id) VALUES (4,false,'26-4-2020','11:05am','4','4','4');
-INSERT INTO `showappointment` (appointment_id,approval_status,appointment_date,appointment_time,centre_id,user_id,test_id) VALUES (5,true,'27-4-2020','12:05am','5','5','5');
+INSERT INTO `showappointment` (appointment_id,approval_status,appointment_date,appointment_time,centre_id,user_id,test_id) VALUES (1,true,'2020-5-23','8:05pm','1','1','1');
+INSERT INTO `showappointment` (appointment_id,approval_status,appointment_date,appointment_time,centre_id,user_id,test_id) VALUES (2,false,'2020-5-30','9:05am','2','2','2');
+INSERT INTO `showappointment` (appointment_id,approval_status,appointment_date,appointment_time,centre_id,user_id,test_id) VALUES (3,true,'2020-6-23','10:05am','3','3','3');
+INSERT INTO `showappointment` (appointment_id,approval_status,appointment_date,appointment_time,centre_id,user_id,test_id) VALUES (4,false,'2020-2-23','11:05am','4','4','4');
+INSERT INTO `showappointment` (appointment_id,approval_status,appointment_date,appointment_time,centre_id,user_id,test_id) VALUES (5,true,'2020-9-18','12:05am','5','5','5');

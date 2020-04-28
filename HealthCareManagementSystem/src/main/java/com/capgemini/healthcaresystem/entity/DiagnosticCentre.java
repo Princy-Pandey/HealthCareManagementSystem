@@ -1,24 +1,10 @@
 package com.capgemini.healthcaresystem.entity;
 
-import java.util.HashSet;
 
-import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import lombok.Data;
 
 
 /************************************************************************************
@@ -30,7 +16,7 @@ import lombok.Data;
  ************************************************************************************/
 
 
-@Entity()
+@Entity
 @Table(name= "DIAGNOSTICCENTRE")
 public class DiagnosticCentre{
 	
