@@ -70,4 +70,29 @@ public class UserDao implements UserDaoInterface
    		TypedQuery<User> query = em.createQuery(Qstr,User.class).setParameter("USER_MAIL",userMail);
    		return query.getSingleResult();
 	}
+
+	@Override
+	public boolean update(User user, String userMail) 
+	{
+		// TODO Auto-generated method stub
+		User updateUser =  em.find(User.class, userMail);
+		updateUser.setUserName(user.getUserName());
+		updateUser.setUserPassword(user.getUserPassword());
+		updateUser.setUserContact(user.getUserContact());
+		updateUser.setUserAge(user.getUserAge());
+		updateUser.setSecretWord(user.getSecretWord());
+		em.persist(updateUser);
+		return true;
+	}
+
+	@Override
+	public boolean findMail(String userMail) 
+	{
+		// TODO Auto-generated method stub
+		if(em.contains(em.find(User.class, userMail)))
+		{
+			return true;
+		}
+		return false;
+	}
 }

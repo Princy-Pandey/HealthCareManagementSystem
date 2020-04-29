@@ -8,7 +8,9 @@ import com.capgemini.healthcaresystem.dao.LoginDaoInterface;
 import com.capgemini.healthcaresystem.dao.UserDaoInterface;
 import com.capgemini.healthcaresystem.entity.Login;
 import com.capgemini.healthcaresystem.entity.User;
+import com.capgemini.healthcaresystem.entity.User.login;
 import com.capgemini.healthcaresystem.exception.HealthCareSystemServiceException;
+import com.capgemini.healthcaresystem.exception.UserException;
 
 @Service("healtcaresystemservice")
 @Transactional
@@ -51,7 +53,7 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 		User user = userDaoInterface.getUserByMail(userMail);
 		if(user.getUserPassword().equals(userpassword)==false)
     		throw new HealthCareSystemServiceException(" Password doesn't match with the existing one! ");
-		
+		user.setLoginStatus(login.loggedIn);
 		return user;
 	}
 
@@ -68,6 +70,30 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 				
 		return user.getUserPassword();
 	}
+
+	@Override
+	public boolean existsByMail(String userMail) 
+	{
+		// TODO Auto-generated method stub
+		return userDaoInterface.findMail(userMail);
+	}
+
+	@Override
+	public String updateData(User user, String userMail) throws HealthCareSystemServiceException 
+	{
+		// TODO Auto-generated method stub
+		if (userDaoInterface.update(user,userMail)==true)
+			return "updated";
+		else 
+			throw new HealthCareSystemServiceException("Error");
+	}
+	
+	@Override
+	public void logout(String userId) throws UserException
+	{
+		User user=userDaoInterface.getUser(userId);
+	   	user.setLoginStatus(login.LoggedOut);
+ 	}
 	
 	/*@Override
 	public void addLogin(Login login) throws HealthCareSystemServiceException, UserException 

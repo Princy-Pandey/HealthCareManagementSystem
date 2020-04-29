@@ -2,6 +2,8 @@ package com.capgemini.healthcaresystem.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -58,6 +60,11 @@ public class User
 	@Column(name = "SECRET_WORD", length=10)
     private String secretWord;
 	
+	public enum login{loggedIn,LoggedOut};
+	@Enumerated(EnumType.STRING)
+	private login loginStatus=login.LoggedOut;
+	
+
 	/********** Default Constructor **********/
 	public User() 
 	{
@@ -160,6 +167,15 @@ public class User
 	public void setSecretWord(String secretWord) 
 	{
 		this.secretWord = secretWord;
+	}
+	
+	public login getLoginStatus() 
+	{
+		return loginStatus;
+	}
+	public void setLoginStatus(login loginStatus) 
+	{
+		this.loginStatus = loginStatus;
 	}
 
 	@Override

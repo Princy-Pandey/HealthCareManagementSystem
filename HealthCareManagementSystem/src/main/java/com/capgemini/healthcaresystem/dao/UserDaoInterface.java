@@ -11,5 +11,7 @@ public interface UserDaoInterface
 	User getUser(String userId) throws UserException;
 	public List<User> getUser();
 	boolean checkUserByMail(String email);
-	User getUserByMail(String email);	
+	User getUserByMail(String email);
+	boolean update(User user, String userMail);
+	boolean findMail(String userMail);	
 }

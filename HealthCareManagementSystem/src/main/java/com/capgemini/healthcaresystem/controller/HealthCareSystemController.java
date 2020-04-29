@@ -4,14 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.capgemini.healthcaresystem.entity.User;
 import com.capgemini.healthcaresystem.exception.HealthCareSystemServiceException;
+import com.capgemini.healthcaresystem.exception.UserException;
 import com.capgemini.healthcaresystem.service.HealthCareSystemServiceInterface;
 
 //@CrossOrigin(origins = "http://localhost:4200")
@@ -47,12 +49,30 @@ public class HealthCareSystemController
 		User user = serviceInterfaceObject.loginUser(userMail, userPassword);
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
+	
+	@PutMapping("/logout/{userId}")
+	public ResponseEntity<String> logout(@PathVariable("userId") String userId) throws UserException
+	{
+		serviceInterfaceObject.logout(userId);
+		return new ResponseEntity<String>("Logged Out Successfully",HttpStatus.OK);
+	}
 
 	@GetMapping("/forgetPassword/{userMail}/{secretWord}")
 	public ResponseEntity<String> forgetPassword(@PathVariable("userMail") String userMail,@PathVariable("secretWord") String secretWord) throws HealthCareSystemServiceException
 	{
 		String string = serviceInterfaceObject.changePassword(userMail, secretWord);
 		return new ResponseEntity<String>(string,HttpStatus.OK);
+	}
+	
+	@PutMapping("/updatePassword/{userMail}")
+	public ResponseEntity<User> updatePassword(@PathVariable("userMail") String userMail,@RequestBody User User) throws HealthCareSystemServiceException
+	{
+	    if (serviceInterfaceObject.existsByMail(userMail))
+	    {
+	    	serviceInterfaceObject.updateData(User,userMail);
+		    return new ResponseEntity<User>(User,HttpStatus.OK);
+		}
+   	 	return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	}
 	
 	
