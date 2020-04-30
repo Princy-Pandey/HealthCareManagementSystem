@@ -17,6 +17,7 @@ public interface HealthCareSystemServiceInterface
 	boolean existsByMail(String userMail);
 	String updateData(User user, String userMail) throws HealthCareSystemServiceException;
 	void logout(String userId) throws UserException;
+	Boolean deleteUser(String userId);
 
 	//public void addLogin(Login login) throws HealthCareSystemServiceException, UserException;
 }

@@ -23,13 +23,6 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	private LoginDaoInterface loginDaoInterface;
 
 	@Override
-	public boolean addRegistration(User user) throws HealthCareSystemServiceException
-	{
-		// TODO Auto-generated method stub
-		return userDaoInterface.addRegistration(user);
-	}
-
-	@Override
 	public List<User> viewUser() 
 	{
 		// TODO Auto-generated method stub
@@ -43,6 +36,19 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 		return loginDaoInterface.getLogin();	
 	}
 
+	@Override
+	public Boolean deleteUser(String userId) {
+		// TODO Auto-generated method stub
+		return userDaoInterface.delete(userId);
+	}
+	
+	@Override
+	public boolean addRegistration(User user) throws HealthCareSystemServiceException
+	{
+		// TODO Auto-generated method stub
+		return userDaoInterface.addRegistration(user);
+	}
+	
 	@Override
 	public User loginUser(String userMail, String userpassword) throws HealthCareSystemServiceException 
 	{

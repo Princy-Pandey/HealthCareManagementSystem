@@ -19,14 +19,6 @@ public class UserDao implements UserDaoInterface
 	EntityManager em;
 
 	@Override
-	public boolean addRegistration(User user) 
-	{
-		// TODO Auto-generated method stub
-		em.persist(user);
-		return true;
-	}
-
-	@Override
 	public User getUser(String userId) throws UserException 
 	{
 		// TODO Auto-generated method stub
@@ -43,6 +35,27 @@ public class UserDao implements UserDaoInterface
 		TypedQuery<User> query = em.createQuery("from User", User.class);
 		List<User> userList = query.getResultList();
 		return userList;
+	}
+	
+	@Override
+	public Boolean delete(String userId) 
+	{
+		// TODO Auto-generated method stub
+		User user = em.find(User.class, userId);
+		if(user!=null)
+		{
+			em.remove(user);
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean addRegistration(User user) 
+	{
+		// TODO Auto-generated method stub
+		em.persist(user);
+		return true;
 	}
 	
 	@Override

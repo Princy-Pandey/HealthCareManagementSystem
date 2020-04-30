@@ -4,6 +4,7 @@
 INSERT INTO USERDATA(user_id,user_role,user_name,user_mail,user_password,user_contact,user_gender,user_age,secret_word) VALUES ('1','admin','Admin','Admin01','admin01',010101,'M',01,'admin');
 INSERT INTO USERDATA(user_id,user_role,user_name,user_mail,user_password,user_contact,user_gender,user_age,secret_word) VALUES ('2','user','Maneesh','maani12k','user12',1890,'Male',21,'DodoMan');
 
+
 /*************************************************************************DIAGNOSTIC CENTRE DATA*************************************************************************/
 
 INSERT INTO `diagnosticcentre` (centre_id,centre_name,centre_contact_number,centre_address) VALUES ('1','Jalandhar',7508027308,'784 Model Town');

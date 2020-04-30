@@ -13,5 +13,6 @@ public interface UserDaoInterface
 	boolean checkUserByMail(String email);
 	User getUserByMail(String email);
 	boolean update(User user, String userMail);
-	boolean findMail(String userMail);	
+	boolean findMail(String userMail);
+	Boolean delete(String userId);	
 }
