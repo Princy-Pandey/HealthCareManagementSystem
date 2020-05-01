@@ -13,9 +13,5 @@ public class HealthCareManagementSystemApplication {
 		SpringApplication.run(HealthCareManagementSystemApplication.class, args);
 	}
 
-	
-	
-	
-
 
 }

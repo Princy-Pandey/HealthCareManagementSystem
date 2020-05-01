@@ -32,7 +32,7 @@ import com.capgemini.healthcaresystem.service.HealthCareSystemServiceInterface;
 ************************************************************************************/
 
 
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class HealthCareSystemController {
 
@@ -97,13 +97,13 @@ public class HealthCareSystemController {
 	************************************************************************************/
 	
 	@PostMapping("/addTest")
-	public ResponseEntity<Object> addTest(@RequestBody Test test) throws TestException
+	public ResponseEntity<Test> addTest(@RequestBody Test test) throws TestException
 	{
 				
 				try {
 					System.out.println("This is test id"+test.getTestId());
 					service.addTest(test);
-					return new ResponseEntity<>("Test Added",HttpStatus.OK);
+					return new ResponseEntity<Test>(HttpStatus.OK);
 				}
 				catch(DataIntegrityViolationException ex)
 				{

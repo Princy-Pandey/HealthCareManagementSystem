@@ -54,6 +54,7 @@ public class TestDao implements TestDaoInterface {
 		Test obj=em.find(Test.class, testId);
 		em.remove(obj);
 		return true;
+		
 	}
 	
 	

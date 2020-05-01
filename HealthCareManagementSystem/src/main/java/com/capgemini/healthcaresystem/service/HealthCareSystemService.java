@@ -96,12 +96,17 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	}
 
 	@Override
-	public boolean deleteTest(String testId) throws TestException{
+	public boolean deleteTest(String testId) throws TestException {
 		// TODO Auto-generated method stub
-		if( tdao.deleteTest(testId))
+		if(tdao.deleteTest(testId))
+			{
 			return true;
+			}
 		else
-			throw new TestException("Cannot add test, check id");
+			{
+			throw new CentreException("Cannot delete Centre, check id");
+			}
+	
 	}
 
 	@Override

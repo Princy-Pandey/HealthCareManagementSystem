@@ -24,7 +24,7 @@ public interface HealthCareSystemServiceInterface {
 	
 	//Test
 	public boolean addTest(Test test) throws TestException;
-	public boolean deleteTest(String testId) throws TestException;
+	public boolean deleteTest(String testId) ;
 	List<Test> viewTest() throws TestException;
 	
 	

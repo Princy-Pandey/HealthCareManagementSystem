@@ -3,6 +3,7 @@ package com.capgemini.healthcaresystem.entity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -33,17 +34,17 @@ public class Appointment {
 	private long appointmentId;
 	
     /***************User Id**********************/
-	@ManyToOne()
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name= "USER_ID", referencedColumnName ="USER_ID")
 	private User userId;
     
     /****************Test Id*********************/ 
-	@ManyToOne()
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name= "TEST_ID", referencedColumnName ="TEST_ID")
 	private Test testId;
 	
     /****************Centre Id*******************/ 
-	@ManyToOne()
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name= "CENTRE_ID", referencedColumnName ="CENTRE_ID")
 	private DiagnosticCentre centreId;
     
