@@ -24,12 +24,6 @@ public class HealthCareSystemController
 	@Autowired
 	private HealthCareSystemServiceInterface serviceInterfaceObject;
 	
-	@GetMapping("/viewUsers")
-	public ResponseEntity<Object> getUser()
-	{
-		return new ResponseEntity<>(serviceInterfaceObject.viewUser(),HttpStatus.OK);
-	}
-	
 	@DeleteMapping("/deleteUser/{userId}")
 	public ResponseEntity<Boolean> delUser(@PathVariable("userId") String userId) throws UserException 
 	{
@@ -38,7 +32,43 @@ public class HealthCareSystemController
 		
 		return new ResponseEntity<Boolean>(status, HttpStatus.OK);
 	}
+	
+	@PutMapping("/logout/{userId}")
+	public ResponseEntity<String> logout(@PathVariable("userId") String userId) throws UserException
+	{
+		serviceInterfaceObject.logout(userId);
+		return new ResponseEntity<String>("Logged Out Successfully",HttpStatus.OK);
+	}
+	
+	@PutMapping("/updatePassword/{userMail}")
+	public ResponseEntity<User> updatePassword(@PathVariable("userMail") String userMail,@RequestBody User User) throws HealthCareSystemServiceException
+	{
+	    if (serviceInterfaceObject.existsByMail(userMail))
+	    {
+	    	serviceInterfaceObject.updateData(User,userMail);
+		    return new ResponseEntity<User>(User,HttpStatus.OK);
+		}
+   	 	return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+	}
 
+	@GetMapping("/viewUsers")
+	public ResponseEntity<Object> getUser()
+	{
+		return new ResponseEntity<>(serviceInterfaceObject.viewUser(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/login/{userMail}/{userPassword}")
+	public int validateLogin(@PathVariable String userMail, @PathVariable String userPassword)
+	{
+		return serviceInterfaceObject.validateLogin(userMail, userPassword);
+	}
+	
+	@GetMapping("/verifyUser/{userMail}/{secretWord}")
+	public int verifyUser(@PathVariable("userMail") String userMail,@PathVariable("secretWord") String secretWord) throws HealthCareSystemServiceException
+	{
+		return serviceInterfaceObject.verifyUserSecretWord(userMail, secretWord); 
+	}
+	
 	@PostMapping("/registration")
 	public String addRegistration(@RequestBody User user) throws HealthCareSystemServiceException
 	{
@@ -65,60 +95,5 @@ public class HealthCareSystemController
 		{
 			throw new HealthCareSystemServiceException("ID already Exists");
 		}	
-	}
-	
-	@GetMapping("/login/{userMail}/{userPassword}")
-	public ResponseEntity<User> login(@PathVariable("userMail") String userMail,@PathVariable("userPassword") String userPassword) throws HealthCareSystemServiceException
-	{
-		User user = serviceInterfaceObject.loginUser(userMail, userPassword);
-		return new ResponseEntity<User>(user,HttpStatus.OK);
-	}
-	
-	@PutMapping("/logout/{userId}")
-	public ResponseEntity<String> logout(@PathVariable("id") String userId) throws UserException
-	{
-		serviceInterfaceObject.logout(userId);
-		return new ResponseEntity<String>("Logged Out Successfully",HttpStatus.OK);
-	}
-
-	@GetMapping("/forgetPassword/{userMail}/{secretWord}")
-	public ResponseEntity<String> forgetPassword(@PathVariable("userMail") String userMail,@PathVariable("secretWord") String secretWord) throws HealthCareSystemServiceException
-	{
-		String string = serviceInterfaceObject.changePassword(userMail, secretWord);
-		return new ResponseEntity<String>(string,HttpStatus.OK);
-	}
-	
-	@PutMapping("/updatePassword/{userMail}")
-	public ResponseEntity<User> updatePassword(@PathVariable("userMail") String userMail,@RequestBody User User) throws HealthCareSystemServiceException
-	{
-	    if (serviceInterfaceObject.existsByMail(userMail))
-	    {
-	    	serviceInterfaceObject.updateData(User,userMail);
-		    return new ResponseEntity<User>(User,HttpStatus.OK);
-		}
-   	 	return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-	}
-	
-	
-	/*
-	@GetMapping("/viewLogin")
-	public ResponseEntity<Object> getLogin()
-	{
-		return new ResponseEntity<>(serviceInterfaceObject.viewLogin(),HttpStatus.OK);
-	}
-	
-	@PostMapping("/Login")
-	public ResponseEntity<Object> addLogin(@RequestBody Login login) throws HealthCareSystemServiceException
-	{	
-		try 
-		{
-			serviceInterfaceObject.addLogin(login);
-			return new ResponseEntity<>("User Logged In",HttpStatus.OK);
-		}
-		catch(DataIntegrityViolationException ex)
-		{
-			throw new HealthCareSystemServiceException("Id doesn't exists");
-		}
-	}
-	*/
+	}	
 }

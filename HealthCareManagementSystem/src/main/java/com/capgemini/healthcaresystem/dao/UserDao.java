@@ -1,5 +1,6 @@
 package com.capgemini.healthcaresystem.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -19,16 +20,6 @@ public class UserDao implements UserDaoInterface
 	EntityManager em;
 
 	@Override
-	public User getUser(String userId) throws UserException 
-	{
-		// TODO Auto-generated method stub
-		User user = em.find(User.class, userId);
-		if(user==null) 
-			throw new UserException("User Id does not exist for "+ userId);
-		return user;
-	}
-
-	@Override
 	public List<User> getUser() 
 	{
 		// TODO Auto-generated method stub
@@ -37,6 +28,27 @@ public class UserDao implements UserDaoInterface
 		return userList;
 	}
 	
+	@Override
+	public User getUser(String userId) throws UserException 
+	{
+		// TODO Auto-generated method stub
+		User user = em.find(User.class, userId);
+		if(user==null) 
+			throw new UserException("User Id does not exist for "+ userId);
+		return user;
+	}
+	
+	@Override
+	public boolean findMail(String userMail) 
+	{
+		// TODO Auto-generated method stub
+		if(em.contains(em.find(User.class, userMail)))
+		{
+			return true;
+		}
+		return false;
+	}
+
 	@Override
 	public Boolean delete(String userId) 
 	{
@@ -49,6 +61,21 @@ public class UserDao implements UserDaoInterface
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean update(User user, String userMail) 
+	{
+		// TODO Auto-generated method stub
+		User updateUser =  em.find(User.class, userMail);
+		updateUser.setUserName(user.getUserName());
+		updateUser.setUserPassword(user.getUserPassword());
+		updateUser.setUserContact(user.getUserContact());
+		updateUser.setUserAge(user.getUserAge());
+		updateUser.setSecretWord(user.getSecretWord());
+		em.persist(updateUser);
+		return true;
+	}
+
 	
 	@Override
 	public boolean addRegistration(User user) 
@@ -83,29 +110,44 @@ public class UserDao implements UserDaoInterface
    		TypedQuery<User> query = em.createQuery(Qstr,User.class).setParameter("USER_MAIL",userMail);
    		return query.getSingleResult();
 	}
-
+	
 	@Override
-	public boolean update(User user, String userMail) 
+	public int validateLogin(String userMail, String userPassword)
 	{
-		// TODO Auto-generated method stub
-		User updateUser =  em.find(User.class, userMail);
-		updateUser.setUserName(user.getUserName());
-		updateUser.setUserPassword(user.getUserPassword());
-		updateUser.setUserContact(user.getUserContact());
-		updateUser.setUserAge(user.getUserAge());
-		updateUser.setSecretWord(user.getSecretWord());
-		em.persist(updateUser);
-		return true;
-	}
-
-	@Override
-	public boolean findMail(String userMail) 
-	{
-		// TODO Auto-generated method stub
-		if(em.contains(em.find(User.class, userMail)))
+		List<User> loginList = new ArrayList();
+		String Qstr = "SELECT user FROM User user WHERE user.userMail= :USER_MAIL";
+		TypedQuery<User> query = em.createQuery(Qstr, User.class).setParameter("USER_MAIL",userMail);
+		loginList = query.getResultList();
+		
+		if(loginList.size()>0)
 		{
-			return true;
+			if(loginList.get(0).getUserPassword().equals(userPassword) && loginList.get(0).getUserRole().equals("user"))
+				return 1;
+			else if(loginList.get(0).getUserPassword().equals(userPassword) && loginList.get(0).getUserRole().equals("admin"))
+				return 2;
+			else
+				return 0;
 		}
-		return false;
+		else
+			return 0;
+	}
+	
+	@Override
+	public int validateSecretWord(String userMail, String secretWord)
+	{
+		List<User> verifyList = new ArrayList();
+		String Qstr = "SELECT user FROM User user WHERE user.userMail= :USER_MAIL";
+		TypedQuery<User> query = em.createQuery(Qstr, User.class).setParameter("USER_MAIL",userMail);
+		verifyList = query.getResultList();
+		
+		if(verifyList.size()>0)
+		{
+			if(verifyList.get(0).getSecretWord().equals(secretWord) && verifyList.get(0).getUserRole().equals("user"))
+				return 1;
+			else
+				return 0;
+		}
+		else
+			return 0;
 	}
 }

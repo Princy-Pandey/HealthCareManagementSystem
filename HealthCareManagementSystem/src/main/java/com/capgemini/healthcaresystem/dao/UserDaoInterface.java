@@ -7,12 +7,14 @@ import com.capgemini.healthcaresystem.exception.UserException;
 
 public interface UserDaoInterface 
 {
-	boolean addRegistration(User user);
-	User getUser(String userId) throws UserException;
 	public List<User> getUser();
+	User getUser(String userId) throws UserException;
+	boolean findMail(String userMail);
+	Boolean delete(String userId);
+	boolean update(User user, String userMail);
+	boolean addRegistration(User user);
 	boolean checkUserByMail(String email);
 	User getUserByMail(String email);
-	boolean update(User user, String userMail);
-	boolean findMail(String userMail);
-	Boolean delete(String userId);	
+	public int validateLogin(String userMail, String userPassword);
+	int validateSecretWord(String userMail, String secretWord);	
 }
