@@ -2,7 +2,10 @@ package com.capgemini.healthcaresystem.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
@@ -23,8 +26,9 @@ public class User {
 	
 	/*************User Id ****************/
 	@Id
-	@Column(name= "USER_ID",length=20)
-	private String userId;
+	@Column(name= "USER_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long userId;
     
 	/*************User Name ****************/
 	@Column(name= "USER_NAME",length=25)
@@ -50,12 +54,12 @@ public class User {
 
 	
 	/**************Getters and Setters***********/
-	public String getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
 
-	public void setUserId(String userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
@@ -115,7 +119,7 @@ public class User {
 
 
 	/************Parameterized Constructor***********/
-	public User(String userId, String userName, long userContactNumber, String userEmail, int userAge,
+	public User(long userId, String userName, long userContactNumber, String userEmail, int userAge,
 			String userGender) {
 		super();
 		this.userId = userId;

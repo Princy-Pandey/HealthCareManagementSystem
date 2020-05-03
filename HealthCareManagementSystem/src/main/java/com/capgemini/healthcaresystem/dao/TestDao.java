@@ -49,12 +49,11 @@ public class TestDao implements TestDaoInterface {
 	 ************************************************************************************/
 
 	@Override
-	public boolean deleteTest(String testId) {
+	public boolean deleteTest(long testId) {
 		// TODO Auto-generated method stub
 		Test obj=em.find(Test.class, testId);
 		em.remove(obj);
 		return true;
-		
 	}
 	
 	
@@ -66,7 +65,7 @@ public class TestDao implements TestDaoInterface {
 	 ************************************************************************************/
 
 	@Override
-	public Test getTest(String testId) throws TestException {
+	public Test getTest(long testId) throws TestException {
 		// TODO Auto-generated method stub
 		Test test=em.find(Test.class, testId);
 		if(test==null) throw new TestException("Test Id does not exist for "+ testId);

@@ -10,8 +10,8 @@ import com.capgemini.healthcaresystem.exception.TestException;
 public interface TestDaoInterface {
 	
 	public boolean addTest(Test test);
-	public boolean deleteTest(String testId);
-	Test getTest(String testId) throws TestException;
+	public boolean deleteTest(long testId);
+	Test getTest(long testId) throws TestException;
 	public List<Test> getTest();
 
 }

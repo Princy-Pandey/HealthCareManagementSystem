@@ -9,7 +9,8 @@ import com.capgemini.healthcaresystem.exception.CentreException;
 public interface DiagnosticCentreDaoInterface {
 	
 	public boolean addCentre(DiagnosticCentre diagnosticCentre);
-	public boolean deleteCentre(String centreId);
-	DiagnosticCentre getCentre(String centreId) throws CentreException;
+	public boolean deleteCentre(long centreId);
+	DiagnosticCentre getCentre(long centreId) throws CentreException;
 	public List<DiagnosticCentre> getCentre();
+	public void updateCentre(long centreId,String centreName, long centreContactNumber, String centreAddress);
 }

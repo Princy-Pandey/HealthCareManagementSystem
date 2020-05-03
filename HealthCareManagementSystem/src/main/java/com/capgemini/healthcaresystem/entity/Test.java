@@ -4,9 +4,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
@@ -32,8 +35,9 @@ public class Test {
 	
 	/*************Test Id ****************/
 	@Id
-	@Column(name= "TEST_ID",length=20)
-	private String testId;
+	@Column(name= "TEST_ID")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long testId;
 	
 	
 	/*************Test Id ****************/
@@ -48,12 +52,12 @@ public class Test {
 
 
 	/**************Getters and Setters***********/
-	public String getTestId() {
+	public long getTestId() {
 		return testId;
 	}
 
 
-	public void setTestId(String testId) {
+	public void setTestId(long testId) {
 		this.testId = testId;
 	}
 
@@ -82,9 +86,9 @@ public class Test {
 
 	
 	/************Parameterized Constructor***********/
-	public Test(String testId, String testName, DiagnosticCentre diagnosticCentre) {
+	public Test(String testName, DiagnosticCentre diagnosticCentre) {
 		super();
-		this.testId = testId;
+		//this.testId = testId;
 		this.testName = testName;
 		this.diagnosticCentre = diagnosticCentre;
 	}

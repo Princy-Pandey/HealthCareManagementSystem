@@ -34,7 +34,7 @@ public class UserDao implements UserDaoInterface{
 	 ************************************************************************************/
 	
 	@Override
-	public User getUser(String userId) throws UserException {
+	public User getUser(long userId) throws UserException {
 		// TODO Auto-generated method stub
 		User user=em.find(User.class, userId);
 		if(user==null) throw new UserException("User Id does not exist for "+ userId);

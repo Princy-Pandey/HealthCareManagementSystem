@@ -50,11 +50,30 @@ public class DiagnosticCentreDao implements DiagnosticCentreDaoInterface {
 	 ************************************************************************************/
 	
 	@Override
-	public boolean deleteCentre(String centreId) {
+	public boolean deleteCentre(long centreId) {
 		// TODO Auto-generated method stub
 		DiagnosticCentre obj=em.find(DiagnosticCentre.class, centreId);
 				em.remove(obj);
 				return true;
+		
+	}
+	
+	
+	/************************************************************************************
+	 * Method:                        updateCentre
+     * Description:                   To update centre in diagnostic centre
+	 * @param updateCentre            Update centre
+	 
+	 ************************************************************************************/
+	
+	@Override
+	public void updateCentre(long centreId, String centreName, long centreContactNumber, String centreAddress) {
+		// TODO Auto-generated method stub
+		DiagnosticCentre obj=em.find(DiagnosticCentre.class, centreId);
+		obj.setCentreId(centreId);
+		obj.setCentreName(centreName);
+		obj.setCentreContactNumber(centreContactNumber);
+		obj.setCentreAddress(centreAddress);
 		
 	}
 
@@ -69,12 +88,14 @@ public class DiagnosticCentreDao implements DiagnosticCentreDaoInterface {
 	
 	
 	@Override
-	public DiagnosticCentre getCentre(String centreId) throws CentreException {
+	public DiagnosticCentre getCentre(long centreId) throws CentreException {
 		// TODO Auto-generated method stub
 		DiagnosticCentre diagnosticCentre=em.find(DiagnosticCentre.class, centreId);
 		if(diagnosticCentre==null) throw new CentreException("Centre Id does not exist for "+ centreId);
 		return diagnosticCentre;
 	}
+	
+	
 
 	@Override
 	public List<DiagnosticCentre> getCentre() {
@@ -83,6 +104,9 @@ public class DiagnosticCentreDao implements DiagnosticCentreDaoInterface {
 		List<DiagnosticCentre> list1=query.getResultList();
 		return list1;
 	}
+
+
+	
 
 	
 

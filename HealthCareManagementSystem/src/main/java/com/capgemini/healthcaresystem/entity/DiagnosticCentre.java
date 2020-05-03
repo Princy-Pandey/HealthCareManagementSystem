@@ -2,7 +2,10 @@ package com.capgemini.healthcaresystem.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
@@ -24,7 +27,8 @@ public class DiagnosticCentre{
 	/*************Centre Id ****************/
 	@Id
 	@Column(name= "CENTRE_ID")
-	private String centreId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long centreId;
     
 	/*************Centre Name ****************/
     @Column(name= "CENTRE_NAME",length=25)
@@ -41,12 +45,12 @@ public class DiagnosticCentre{
 
 
     /**************Getters and Setters***********/
-    public String getCentreId() {
+    public long getCentreId() {
 		return centreId;
 	}
 
 
-	public void setCentreId(String centreId) {
+	public void setCentreId(long centreId) {
 		this.centreId = centreId;
 	}
 
@@ -85,9 +89,9 @@ public class DiagnosticCentre{
 	
 	
 	/************Parameterized Constructor***********/
-	public DiagnosticCentre(String centreId, String centreName, long centreContactNumber, String centreAddress) {
+	public DiagnosticCentre( String centreName, long centreContactNumber, String centreAddress) {
 			super();
-			this.centreId = centreId;
+			//this.centreId = centreId;
 			this.centreName = centreName;
 			this.centreContactNumber = centreContactNumber;
 			this.centreAddress = centreAddress;

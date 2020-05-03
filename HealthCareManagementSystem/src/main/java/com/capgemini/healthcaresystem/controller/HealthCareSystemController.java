@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.capgemini.healthcaresystem.entity.DiagnosticCentre;
@@ -123,7 +124,7 @@ public class HealthCareSystemController {
 	************************************************************************************/
 	
 	@DeleteMapping("/deleteTest/{testId}")
-	public ResponseEntity<Object> deleteTest(@PathVariable String testId) throws TestException
+	public ResponseEntity<Object> deleteTest(@PathVariable long testId) throws TestException
 	{
 		try {
 			service.deleteTest(testId);
@@ -131,7 +132,7 @@ public class HealthCareSystemController {
 		}
 		catch(DataIntegrityViolationException ex)
 		{
-			throw new TestException("Test Id doesnot exists");
+			throw new TestException("Can't delete test");
 		}
 	}
 	
@@ -188,7 +189,7 @@ public class HealthCareSystemController {
 	************************************************************************************/
 	
 	@DeleteMapping("/deleteCentre/{centreId}")
-	public ResponseEntity<Object> deleteCentre(@PathVariable("centreId") String centreId) throws CentreException
+	public ResponseEntity<Object> deleteCentre(@PathVariable("centreId") long centreId) throws CentreException
 	{
 		try{
 			service.deleteCentre(centreId);
@@ -196,9 +197,31 @@ public class HealthCareSystemController {
 		}
 		catch(DataIntegrityViolationException ex)
 		{
-			throw new CentreException("Centre Id does not exists");
+			throw new CentreException("Can't delete centre");
 		}
 		
+	}
+	
+	
+	/************************************************************************************
+	 * Method:                       updateCentre
+     * Description:                  To update details of centre
+	 * @param updateCentre           Update centre details
+	 * @mapping @DeleteMapping       Make HTTP request to update centre by centre id
+	 * @throws CentreException       It is raised due to centre id not present
+	************************************************************************************/
+	
+	@PutMapping("/updateCentre/{centreId}") 
+	public ResponseEntity<Object> updateCentre(@PathVariable("centreId") int centreId,@RequestBody DiagnosticCentre diagnosticCentre) throws CentreException
+	{
+		try {
+		service.updateCentre(centreId, diagnosticCentre.getCentreName(), diagnosticCentre.getCentreContactNumber(), diagnosticCentre.getCentreAddress());
+		return new ResponseEntity<>("Centre Updated",HttpStatus.OK);
+		}
+		catch(DataIntegrityViolationException ex)
+		{
+			throw new CentreException("Can't update centre");
+		}
 	}
 	
 }

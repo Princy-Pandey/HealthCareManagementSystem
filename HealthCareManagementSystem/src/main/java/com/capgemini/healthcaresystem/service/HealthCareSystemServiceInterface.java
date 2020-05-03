@@ -24,14 +24,15 @@ public interface HealthCareSystemServiceInterface {
 	
 	//Test
 	public boolean addTest(Test test) throws TestException;
-	public boolean deleteTest(String testId) ;
+	public boolean deleteTest(long testId) ;
 	List<Test> viewTest() throws TestException;
 	
 	
 	//Centre
 	public boolean addCentre(DiagnosticCentre diagnosticCentre) throws CentreException;
-	public boolean deleteCentre(String centreId) throws CentreException;
+	public boolean deleteCentre(long centreId) throws CentreException;
 	List<DiagnosticCentre> viewCentre() throws CentreException;
+	public void updateCentre(long centreId,String centreName, long centreContactNumber, String centreAddress);
 
 	
 }

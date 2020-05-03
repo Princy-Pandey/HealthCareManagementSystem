@@ -87,7 +87,7 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	public boolean addTest(Test test) throws TestException {
 		// TODO Auto-generated method stub
 		DiagnosticCentre cent=cdao.getCentre(test.getCentre().getCentreId());
-		Test obj=new Test(test.getTestId(),test.getTestName(),cent);
+		Test obj=new Test(test.getTestName(),cent);
 		
 		if(tdao.addTest(obj))
 			return true;
@@ -96,16 +96,13 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	}
 
 	@Override
-	public boolean deleteTest(String testId) throws TestException {
+	public boolean deleteTest(long testId) throws TestException {
 		// TODO Auto-generated method stub
 		if(tdao.deleteTest(testId))
-			{
 			return true;
-			}
 		else
-			{
-			throw new CentreException("Cannot delete Centre, check id");
-			}
+			throw new CentreException("Cannot delete Test, check id");
+			
 	
 	}
 
@@ -125,6 +122,7 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	 * @param addCentre               Adding centre
 	 * @param deleteCentre            Deleting centre
 	 * @param viewCentre              Display all centre present
+	 * @param updateCentre            Update centre present
 	 * @throws CentreException        It is raised due to centre id not present
 	************************************************************************************/
 	
@@ -143,7 +141,7 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	}
 
 	@Override
-	public boolean deleteCentre(String centreId) throws CentreException{
+	public boolean deleteCentre(long centreId) throws CentreException{
 		// TODO Auto-generated method stub
 		 if(cdao.deleteCentre(centreId))
 		 {
@@ -152,12 +150,21 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 		 else
 				throw new CentreException("Cannot delete Centre, check id");
 	}
+	
+	@Override
+	public void updateCentre(long centreId, String centreName, long centreContactNumber, String centreAddress) {
+		// TODO Auto-generated method stub
+		cdao.updateCentre(centreId, centreName, centreContactNumber, centreAddress);
+		
+	}
+	
 
 	@Override
 	public List<DiagnosticCentre> viewCentre() throws CentreException{
 		// TODO Auto-generated method stub
 		return cdao.getCentre();
 	}
+
 	
 }
 
