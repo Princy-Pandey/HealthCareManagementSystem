@@ -8,8 +8,7 @@ public class UserException extends Exception
 		super();
 	}
 
-	public UserException(final String message)
-	{
+	public UserException(final String message) {
 		super(message);
 	}
 }

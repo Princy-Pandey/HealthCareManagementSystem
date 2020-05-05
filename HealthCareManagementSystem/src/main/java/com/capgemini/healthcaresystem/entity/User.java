@@ -4,8 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -23,9 +23,9 @@ public class User
 {
 	/********** User Id **********/
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "USER_ID")
-	private String userId;
+	private int userId;
 	
 	/********** User Role **********/
 	@Column(name = "USER_ROLE", columnDefinition = "varchar(255) default 'User'")
@@ -74,11 +74,10 @@ public class User
 	}
 	
 	/********** Parameterized Constructor **********/
-	public User(String userId,String userRole, String userName, String userMail, String userPassword, long userContact, 
+	public User(String userRole, String userName, String userMail, String userPassword, long userContact, 
 			String userGender,int userAge, String secretWord) 
 	{
 		super();
-		this.userId = userId;
 		this.userRole = userRole;
 		this.userName = userName;
 		this.userMail = userMail;
@@ -90,11 +89,11 @@ public class User
 	}
 	
 	/********** Getters and Setters **********/
-	public String getUserId() 
+	public int getUserId() 
 	{
 		return userId;
 	}
-	public void setUserId(String userId) 
+	public void setUserId(int userId) 
 	{
 		this.userId = userId;
 	}

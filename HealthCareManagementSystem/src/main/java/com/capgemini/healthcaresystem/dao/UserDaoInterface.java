@@ -10,11 +10,12 @@ public interface UserDaoInterface
 	public List<User> getUser();
 	User getUser(String userId) throws UserException;
 	boolean findMail(String userMail);
-	Boolean delete(String userId);
-	boolean update(User user, String userMail);
+	Boolean delete(int userId);
+	void updateUser(String userMail, String userPassword);
 	boolean addRegistration(User user);
 	boolean checkUserByMail(String email);
 	User getUserByMail(String email);
 	public int validateLogin(String userMail, String userPassword);
-	int validateSecretWord(String userMail, String secretWord);	
+	int validateSecretWord(String userMail, String secretWord);
+	User viewUserByMail(String userMail);	
 }

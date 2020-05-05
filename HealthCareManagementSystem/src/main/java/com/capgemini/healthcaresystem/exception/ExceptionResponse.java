@@ -2,26 +2,23 @@ package com.capgemini.healthcaresystem.exception;
 
 public class ExceptionResponse 
 {
-	private String errorMessage;
-	private String requestedURI;
+	private String message;
 
-	public String getErrorMessage() 
-	{
-		return errorMessage;
+	public ExceptionResponse() {
+		super();
 	}
 
-	public void setErrorMessage(final String errorMessage) 
+	public ExceptionResponse(String message)
 	{
-		this.errorMessage = errorMessage;
+		super();
+		this.message = message;
 	}
 
-	public String getRequestedURI() 
-	{
-		return requestedURI;
+	public String getMessage() {
+		return message;
 	}
 
-	public void callerURL(final String requestedURI) 
-	{
-		this.requestedURI = requestedURI;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

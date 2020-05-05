@@ -33,8 +33,6 @@ public class UserDao implements UserDaoInterface
 	{
 		// TODO Auto-generated method stub
 		User user = em.find(User.class, userId);
-		if(user==null) 
-			throw new UserException("User Id does not exist for "+ userId);
 		return user;
 	}
 	
@@ -50,7 +48,7 @@ public class UserDao implements UserDaoInterface
 	}
 
 	@Override
-	public Boolean delete(String userId) 
+	public Boolean delete(int userId) 
 	{
 		// TODO Auto-generated method stub
 		User user = em.find(User.class, userId);
@@ -61,21 +59,29 @@ public class UserDao implements UserDaoInterface
 		}
 		return false;
 	}
+
+	
+	/************************************************************************************
+	 * Method:                        updateCentre
+     * Description:                   To update centre in diagnostic centre
+	 * @param updateCentre            Update centre
+	 
+	 ************************************************************************************/
 	
 	@Override
-	public boolean update(User user, String userMail) 
+	public void updateUser(String userMail, String userPassword) 
 	{
 		// TODO Auto-generated method stub
 		User updateUser =  em.find(User.class, userMail);
-		updateUser.setUserName(user.getUserName());
-		updateUser.setUserPassword(user.getUserPassword());
-		updateUser.setUserContact(user.getUserContact());
-		updateUser.setUserAge(user.getUserAge());
-		updateUser.setSecretWord(user.getSecretWord());
-		em.persist(updateUser);
-		return true;
+		updateUser.setUserPassword(userPassword);
 	}
 
+	@Override
+	public User viewUserByMail(String userMail) 
+	{
+		// TODO Auto-generated method stub
+		return em.find(User.class, userMail);
+	}
 	
 	@Override
 	public boolean addRegistration(User user) 
