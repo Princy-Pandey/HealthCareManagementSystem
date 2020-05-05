@@ -112,6 +112,13 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 		return tdao.getTest();	
 		
 	}
+	
+	@Override
+	public Test viewTestById(long testId) {
+		// TODO Auto-generated method stub
+		Test test=tdao.viewTestById(testId);
+		return test;
+	}
 
 	
 
@@ -157,12 +164,22 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 		cdao.updateCentre(centreId, centreName, centreContactNumber, centreAddress);
 		
 	}
+
 	
 
 	@Override
 	public List<DiagnosticCentre> viewCentre() throws CentreException{
 		// TODO Auto-generated method stub
 		return cdao.getCentre();
+	}
+
+	
+
+	@Override
+	public DiagnosticCentre viewCentreById(long centreId) {
+		// TODO Auto-generated method stub
+		DiagnosticCentre diagnosticCentre=cdao.viewCentreById(centreId);
+		return diagnosticCentre;
 	}
 
 	

@@ -106,6 +106,13 @@ public class DiagnosticCentreDao implements DiagnosticCentreDaoInterface {
 	}
 
 
+	@Override
+	public DiagnosticCentre viewCentreById(long centreId) {
+		// TODO Auto-generated method stub
+		return em.find(DiagnosticCentre.class, centreId);
+	}
+
+
 	
 
 	

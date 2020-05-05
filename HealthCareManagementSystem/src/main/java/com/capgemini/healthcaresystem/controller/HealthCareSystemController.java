@@ -137,6 +137,14 @@ public class HealthCareSystemController {
 	}
 	
 	
+	@GetMapping("/viewtestbyid/{testId}")
+	public ResponseEntity<Object> viewTestById(@PathVariable("testId") long testId)
+	{
+		Test test=service.viewTestById(testId);
+		return new ResponseEntity<Object>(test,HttpStatus.OK);
+	}
+	
+	
 	
 	
 	/************************************************************************************
@@ -222,6 +230,14 @@ public class HealthCareSystemController {
 		{
 			throw new CentreException("Can't update centre");
 		}
+	}
+	
+	
+	@GetMapping("/viewcentrebyid/{centreId}")
+	public ResponseEntity<Object> viewCentreById(@PathVariable("centreId") long centreId)
+	{
+		DiagnosticCentre diagnosticCentre=service.viewCentreById(centreId);
+		return new ResponseEntity<Object>(diagnosticCentre,HttpStatus.OK);
 	}
 	
 }

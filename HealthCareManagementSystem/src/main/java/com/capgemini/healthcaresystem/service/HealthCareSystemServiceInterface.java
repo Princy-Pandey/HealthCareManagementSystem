@@ -26,6 +26,7 @@ public interface HealthCareSystemServiceInterface {
 	public boolean addTest(Test test) throws TestException;
 	public boolean deleteTest(long testId) ;
 	List<Test> viewTest() throws TestException;
+	public Test viewTestById(long testId);
 	
 	
 	//Centre
@@ -33,6 +34,7 @@ public interface HealthCareSystemServiceInterface {
 	public boolean deleteCentre(long centreId) throws CentreException;
 	List<DiagnosticCentre> viewCentre() throws CentreException;
 	public void updateCentre(long centreId,String centreName, long centreContactNumber, String centreAddress);
+	public DiagnosticCentre viewCentreById(long centreId);
 
 	
 }

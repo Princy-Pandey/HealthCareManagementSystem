@@ -13,5 +13,6 @@ public interface TestDaoInterface {
 	public boolean deleteTest(long testId);
 	Test getTest(long testId) throws TestException;
 	public List<Test> getTest();
+	public Test viewTestById(long testId);
 
 }

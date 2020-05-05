@@ -13,4 +13,5 @@ public interface DiagnosticCentreDaoInterface {
 	DiagnosticCentre getCentre(long centreId) throws CentreException;
 	public List<DiagnosticCentre> getCentre();
 	public void updateCentre(long centreId,String centreName, long centreContactNumber, String centreAddress);
+	public DiagnosticCentre viewCentreById(long centreId);
 }

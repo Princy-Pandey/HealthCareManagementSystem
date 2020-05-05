@@ -79,6 +79,13 @@ public class TestDao implements TestDaoInterface {
 		return query.getResultList();
 	}
 
+
+	@Override
+	public Test viewTestById(long testId) {
+		// TODO Auto-generated method stub
+		return em.find(Test.class, testId);
+	}
+
 	
 
 }
