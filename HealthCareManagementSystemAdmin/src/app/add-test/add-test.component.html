@@ -1,0 +1,76 @@
+<div class="container p-3 my-3 border" class="shadow p-4 mb-4 bg-white">
+  <h3 class="text-centre">Tests Present</h3>
+  <button (click)="showDetails()" class="btn btn-danger">Show</button>
+
+  
+    <table class="table table-striped" *ngIf="val">  
+      <tr>
+        <th>CENTRE ID</th>
+        <th>CENTRE NAME</th>
+        <th>TEST ID</th>
+        <th>TEST NAME</th>
+      </tr>
+    
+      <tr *ngFor="let test of tests" >
+        <td >{{test.centre.centreId}}</td>
+        <td>{{test.centre.centreName}}</td>
+        <td >{{test.testId}}</td> 
+        <td >{{test.testName}}</td> 
+      </tr> 
+    </table> 
+    
+</div>
+<br>
+<br>
+<br>
+<div class="container p-3 my-3 border" class="shadow p-4 mb-4 bg-white">
+<section class="col-md-4 mx-auto">
+    <h3 class="text-centre">Add Test</h3>
+    <div class="alert alert-success" *ngIf="msg != undefined">{{msg}}</div>
+    <div class="alert alert-danger" *ngIf="errorMsg != undefined" [innerHTML]="errorMsg"></div>
+  <form #frm="ngForm" (ngSubmit)="addTest()">
+    <div>Test Centre Id</div>
+    <select  [(ngModel)]="test.centre.centreId" name="source" class="form-control">
+
+      <option>--Available centres--</option>
+      <option *ngFor="let centre of centres" >{{centre.centreId}}</option>
+  
+      </select>
+
+      <!--<div>Test Id</div>
+      <div><input type="number" name="tid" [(ngModel)]="test.testId" required #modelcid="ngModel" class="form-control"/></div>
+      <div class="alert alert-danger" *ngIf="modelcid.invalid && modelcid.touched">Test Id is required</div>-->
+
+      <div>Test Name</div>
+      <div><input type="text" name="tname" pattern="[A-Za-z]{1,30}" [(ngModel)]="test.testName" required #mlcname="ngModel" class="form-control"/></div>
+      <div class="alert alert-danger" *ngIf="mlcname.invalid && mlcname.touched">Test Name is required</div>
+      <div class="alert alert-dark" *ngIf="mlcname.invalid && mlcname.dirty"> Name must start from a character</div>
+
+      <div class="mt-2 text-centre">
+        <input type="submit" value="Add Test" [disabled]="!frm.valid" class="btn btn-danger" data-toggle="modal" data-target="#cnfrm"/>
+      </div>
+
+  </form>
+</section>
+</div>
+
+ <!-- Modal -->
+ <div class="modal fade" id="cnfrm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"> Confirm Add! </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to add this test?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Yes </button>
+       
+      </div>
+    </div>
+  </div>
+</div>

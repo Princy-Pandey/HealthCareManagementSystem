@@ -1,0 +1,58 @@
+<div class="container p-3 my-3 border" class="shadow p-4 mb-4 bg-white">
+  <h3 class="text-centre">Available Appointments</h3>
+    <button (click)="showDetails()" class="btn btn-success">Show</button>
+  
+    <tbody>
+      <table class="table table-striped" *ngIf="val">   
+    <thead>
+        <tr> 
+          <th >   APPOINTMENT ID</th>    
+          <th >          USER NAME</th> 
+          <th >        CENTRE NAME</th> 
+          <th >          TEST NAME</th> 
+          <th > APPOINTMENT DATE</th> 
+          <th > APPOINTMENT TIME</th> 
+          <!--<th >  APPROVAL STATUS</th> -->
+          <th colspan="2">Action</th>       
+        </tr>  
+      </thead>  
+      <tbody>
+        
+        <tr *ngFor="let appointment of appointments">  
+          <td >{{appointment.appointmentId}}</td>
+          <td >{{appointment.userId.userName}}</td>
+          <td >{{appointment.centreId.centreName}}</td>
+          <td >{{appointment.testId.testName}}</td>
+          <td >{{appointment.appointmentDate}}</td>
+          <td >{{appointment.appointmentTime}}</td>
+          <!--<td >{{appointment.approval_status}}</td> -->
+                
+          
+         
+          <td><button (click)="appointment()" class="btn btn-success" data-toggle="modal" data-target="#cnfrm">Approve Appointment</button></td>  
+          
+        </tr>  
+      </tbody> 
+      </table>
+      
+</div>
+<div class="modal fade" id="cnfrm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"> Confirm Approval! </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to approve this appointment?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Yes </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
+       
+      </div>
+    </div>
+  </div>
+</div>
