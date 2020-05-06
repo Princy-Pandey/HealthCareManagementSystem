@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Test } from '../test';
-import { AdminserviceService} from '../service/adminservice.service';
+import { AdminserviceService } from '../service/adminservice.service';
 import { Router } from '@angular/router';
 import { DiagnosticCentre } from '../diagnostic-centre';
 
@@ -12,71 +12,106 @@ import { DiagnosticCentre } from '../diagnostic-centre';
 })
 export class AddTestComponent implements OnInit {
 
-  centres:DiagnosticCentre[];
-  centre:DiagnosticCentre;
-  
-  test:Test=new Test();
-  tests:Test[]=[];
+  /*****************************************************************************
+   * creating centres array of DiagnosticCentre type to store the centre detail 
+  /*****************************************************************************/
+
+  centres: DiagnosticCentre[];
+
+  /*************************************************************************
+   * creating centre instance for every time manupulate the data
+   *************************************************************************/
+
+  centre: DiagnosticCentre;
+
+  /*************************************************************************
+   * creating test instance for every time manupulate the data
+   *************************************************************************/
+
+  test: Test = new Test();
+
+  /*****************************************************************************
+   * creating tests array of Test type to store the Test detail 
+  /*****************************************************************************/
+
+  tests: Test[] = [];
+
+  /*****************************************************************************
+   * creating testList array of Test type to store the Test detail 
+  /*****************************************************************************/
+
   testList: Array<Test> = [];
 
-  msg:string;
-  errorMsg:string;
-  Info:string;
+  /*************************************************************************
+   * creating msg and errorMsg of string type to pass exception 
+   ************************************************************************/
 
-  constructor(private adminService:AdminserviceService , private router:Router) { }
+  msg: string;
+  errorMsg: string;
 
-  ngOnInit(){
-    
-    this.adminService.getTest().subscribe(data =>{this.tests=data;});
+  constructor(private adminService: AdminserviceService, private router: Router) { }
 
-    this.adminService.getCentre().subscribe(data =>{this.centres=data;});
+  /*********************************************************************
+   * Method: ngOnInit is life cycle hook called by angular at first
+   * Description: ngOnInit first check the flag value if it is true then check
+   *              and loads all the test in the starting and it is
+   *              checking if test array length is zero then load test 
+   *              and set the test into the current array
+   * Created Date: 27 APR 2020
+   * Author: Princy Pandey
+   ************************************************************************/
+
+  ngOnInit() {
+
+    this.adminService.getTest().subscribe(data => { this.tests = data; });
+
+    this.adminService.getCentre().subscribe(data => { this.centres = data; });
 
   }
 
-  addTest()
-  {
-    this.adminService.addTest(this.test).subscribe((data)=>{
-      console.log("data",data);
-      this.msg=data;
-      this.errorMsg=undefined;
-      this.test=new Test()},
+  /********************************************************************************
+   * Method: addTest
+   * params: test
+   * return: msg based on action
+   * Description: this method call service addTest method and add tests every time
+   *              and routes the page to display all test detail after adding
+   * Created Date: 27 APR 2020
+   * Author: Princy Pandey
+   **********************************************************************************/
 
-      error=>{
-      this.errorMsg=JSON.parse(error.error).message;
-      console.log(error.error);
-      this.msg=undefined});
-    //alert('Added successfully');
-    }
+  addTest() {
+    this.adminService.addTest(this.test).subscribe((data) => {
+      console.log("data", data);
+      this.msg = data;
+      this.errorMsg = undefined;
+      this.test = new Test()
+    },
 
-
-    
-    val:Boolean=false;
-      showDetails()
-      {
-        this.val=!this.val;
-        this.testList.forEach(element => {
-         console.log(element.testId+" "+element.testName+" ");
+      error => {
+        this.errorMsg = JSON.parse(error.error).message;
+        console.log(error.error);
+        this.msg = undefined
       });
-    }
+    //alert('Added successfully');
+  }
 
 
 
-ngOnDestroy() {
-  this.testList.slice();
-    }
-
-    val1:Boolean=false;
-    index1:number;
-    cen1:Test;
-
-    
+  val: Boolean = false;
+  showDetails() {
+    this.val = !this.val;
+    this.testList.forEach(element => {
+      console.log(element.testId + " " + element.testName + " ");
+    });
+  }
 
 
-//sorting according to column:-
-column:string;
-change(col:string)
-{
-  console.log(col);
-  this.column=col;
-}
+
+  ngOnDestroy() {
+    this.testList.slice();
+  }
+
+
+
+
 }
