@@ -10,73 +10,69 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /****************************************************************************************************************************
- *          @author       -  Maneesh Kumar
- *          Description   -  It is a entity class that provides the entites for users.
- *          Version       -  1.0
- *          Created Date  -  20-APR-2020
+ * @author - Maneesh Kumar Description - It is a entity class that provides the
+ *         entites for users. Version - 1.0 Created Date - 20-APR-2020
  ****************************************************************************************************************************/
 
-
 @Entity
-@Table(name="USERDATA")
-public class User 
-{
+@Table(name = "USERDATA")
+public class User {
 	/********** User Id **********/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "USER_ID")
 	private int userId;
-	
+
 	/********** User Role **********/
 	@Column(name = "USER_ROLE", columnDefinition = "varchar(255) default 'User'")
 	private String userRole;
-	
+
 	/********** User Name **********/
-	@Column(name= "USER_NAME", length=25)
-    private String userName;
-	
+	@Column(name = "USER_NAME", length = 25)
+	private String userName;
+
 	/********** User Mail **********/
-	@Column(name= "USER_MAIL", unique=true, length=50)
-    private String userMail;
-	
+	@Column(name = "USER_MAIL", unique = true, length = 50)
+	private String userMail;
+
 	/********** User Password **********/
-	@Column(name= "USER_PASSWORD", length=50)
-    private String userPassword;
-		
+	@Column(name = "USER_PASSWORD", length = 50)
+	private String userPassword;
+
 	/********** User Contact **********/
-	@Column (name= "USER_CONTACT", length=10)
-    private long userContact;
+	@Column(name = "USER_CONTACT", length = 10)
+	private long userContact;
 
 	/********** User Gender **********/
-	@Column(name= "USER_GENDER", length=10)
-	private String userGender; 
-	
+	@Column(name = "USER_GENDER", length = 10)
+	private String userGender;
+
 	/********** User Age **********/
-	@Column(name= "USER_AGE", length=4)
-	private  int userAge;
-	
+	@Column(name = "USER_AGE", length = 4)
+	private int userAge;
+
 	/********** Secret Word **********/
 	// This is used in the case, if the user forgets it password.
-	// Secret word will be used with userMail to check the validity 
+	// Secret word will be used with userMail to check the validity
 	// and show the existing password to the user on frontend.
-	@Column(name = "SECRET_WORD", length=10)
-    private String secretWord;
-	
-	public enum login{loggedIn,LoggedOut};
+	@Column(name = "SECRET_WORD", length = 10)
+	private String secretWord;
+
+	public enum login {
+		loggedIn, LoggedOut
+	};
+
 	@Enumerated(EnumType.STRING)
-	private login loginStatus=login.LoggedOut;
-	
+	private login loginStatus = login.LoggedOut;
 
 	/********** Default Constructor **********/
-	public User() 
-	{
-		
+	public User() {
+
 	}
-	
+
 	/********** Parameterized Constructor **********/
-	public User(String userRole, String userName, String userMail, String userPassword, long userContact, 
-			String userGender,int userAge, String secretWord) 
-	{
+	public User(String userRole, String userName, String userMail, String userPassword, long userContact,
+			String userGender, int userAge, String secretWord) {
 		super();
 		this.userRole = userRole;
 		this.userName = userName;
@@ -87,101 +83,90 @@ public class User
 		this.userAge = userAge;
 		this.secretWord = secretWord;
 	}
-	
+
 	/********** Getters and Setters **********/
-	public int getUserId() 
-	{
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) 
-	{
+
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
-	public String getUserRole() 
-	{
+	public String getUserRole() {
 		return userRole;
 	}
-	public void setUserRole(String userRole) 
-	{
+
+	public void setUserRole(String userRole) {
 		this.userRole = userRole;
 	}
 
-	public String getUserName() 
-	{
+	public String getUserName() {
 		return userName;
 	}
-	public void setUserName(String userName) 
-	{
+
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
-	public String getUserPassword() 
-	{
+	public String getUserPassword() {
 		return userPassword;
 	}
-	public void setUserPassword(String userPassword) 
-	{
+
+	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
 
-	public String getUserMail() 
-	{
+	public String getUserMail() {
 		return userMail;
 	}
-	public void setUserMail(String userMail) 
-	{
+
+	public void setUserMail(String userMail) {
 		this.userMail = userMail;
 	}
 
-	public long getUserContact() 
-	{
+	public long getUserContact() {
 		return userContact;
 	}
-	public void setUserContact(long userContact) 
-	{
+
+	public void setUserContact(long userContact) {
 		this.userContact = userContact;
 	}
 
-	public String getUserGender() 
-	{
+	public String getUserGender() {
 		return userGender;
 	}
-	public void setUserGender(String userGender) 
-	{
+
+	public void setUserGender(String userGender) {
 		this.userGender = userGender;
 	}
 
-	public int getUserAge() 
-	{
+	public int getUserAge() {
 		return userAge;
 	}
-	public void setUserAge(int userAge) 
-	{
+
+	public void setUserAge(int userAge) {
 		this.userAge = userAge;
 	}
 
-	public String getSecretWord() 
-	{
+	public String getSecretWord() {
 		return secretWord;
 	}
-	public void setSecretWord(String secretWord) 
-	{
+
+	public void setSecretWord(String secretWord) {
 		this.secretWord = secretWord;
 	}
-	
-	public login getLoginStatus() 
-	{
+
+	public login getLoginStatus() {
 		return loginStatus;
 	}
-	public void setLoginStatus(login loginStatus) 
-	{
+
+	public void setLoginStatus(login loginStatus) {
 		this.loginStatus = loginStatus;
 	}
 
 	@Override
-	public String toString() 
-	{
+	public String toString() {
 		return "User [userId=" + userId + ", userRole=" + userRole + ", userName=" + userName + ", userPassword="
 				+ userPassword + ", userMail=" + userMail + ", userContact=" + userContact + ", userGender="
 				+ userGender + ", userAge=" + userAge + ", secretWord=" + secretWord + "]";

@@ -16,187 +16,142 @@ import com.capgemini.healthcaresystem.entity.User;
 import com.capgemini.healthcaresystem.exception.UserException;
 import com.capgemini.healthcaresystem.service.HealthCareSystemServiceInterface;
 
-
 /************************************************************************************
-*          @author          Maneesh Kumar
-*          Description      It is a controller class that process action for 
-*                           adding new users, login users and admin, view users 
-*                           and deleting users, verify user and updating password.
-*          Version          1.0
-*          Created Date     22-APR-2020
-************************************************************************************/
+ * @author 			Maneesh Kumar 
+ * Description 		It is a controller class that process
+ *         			action for adding new users, login users and admin, view users and
+ *         			deleting users, verify user and updating password. 
+ * Version 			1.0
+ * Created 			Date 22-APR-2020
+ ************************************************************************************/
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-public class HealthCareSystemController 
-{
+public class HealthCareSystemController {
 	@Autowired
 	private HealthCareSystemServiceInterface serviceInterfaceObject;
-	
-	
-	
+
 	/************************************************************************************
-	 * Method:                       	deleteUser
-     * Description:                  	To delete the user/admin details by Admin.
-	 * @param deleteUser         		Delete user/admin details.
-	 * @mapping DeleteMapping          Make HTTP request to delete selected user/admin.
-	 * @throws TestException         	It is raised if the user details not present. 
-	*************************************************************************************/
-	
+	 * Method: 					deleteUser 
+	 * Description: 			To delete the user/admin details by Admin.
+	 * @param deleteUser 		Delete user/admin details.
+	 * @mapping DeleteMapping 	Make HTTP request to delete selected user/admin.
+	 * @throws TestException 	It is raised if the user details not present.
+	 *************************************************************************************/
+
 	@DeleteMapping("/deleteuser/{userId}")
-	public ResponseEntity<Boolean> deleteUser(@PathVariable("userId") int userId) throws UserException 
-	{
+	public ResponseEntity<Boolean> deleteUser(@PathVariable("userId") int userId) throws UserException {
 		Boolean status = serviceInterfaceObject.deleteUser(userId);
-		if(!status)throw new UserException("User not found.");
-		
+		if (!status)
+			throw new UserException("User not found.");
+
 		return new ResponseEntity<Boolean>(status, HttpStatus.OK);
 	}
-	
-	
-	
+
 	/**************************************************************************************
-	 * Method:                       updatePassword
-     * Description:                  To update the password provided by the user.
-	 * @param updatePassword         Updates the password in the database.
-	 * @mapping PutMapping          Make HTTP request to put the value of the password.
-	 * @throws TestException         It is raised when the user cannot be updated. 
-	***************************************************************************************/
-	
-	@PutMapping("/updatepassword/{userMail}") 
-	public ResponseEntity<Object> updatePassword(@PathVariable("userMail") String userMail,@RequestBody User user) throws UserException
-	{
-		try 
-		{
+	 * Method: 					updatePassword 
+	 * Description: 			To update the password provided by the user.
+	 * @param updatePassword 	Updates the password in the database.
+	 * @mapping PutMapping 		Make HTTP request to put the value of the password.
+	 * @throws TestException 	It is raised when the user cannot be updated.
+	 ***************************************************************************************/
+
+	@PutMapping("/updatepassword/{userMail}")
+	public ResponseEntity<Object> updatePassword(@PathVariable("userMail") String userMail, @RequestBody User user)
+			throws UserException {
+		try {
 			serviceInterfaceObject.updatePassword(userMail, user.getUserPassword(), user.getUserId());
-			return new ResponseEntity<>(" User Updated ",HttpStatus.OK);
-		}
-		catch(DataIntegrityViolationException ex)
-		{
+			return new ResponseEntity<>(" User Updated ", HttpStatus.OK);
+		} catch (DataIntegrityViolationException ex) {
 			throw new UserException(" Cannot Update User! ");
 		}
 	}
-	
-	
-	/*@PutMapping("/updatePassword/{userMail}")
-	public ResponseEntity<User> updatePassword(@PathVariable("userMail") String userMail,@RequestBody User User) throws UserException
-	{
-	    if (serviceInterfaceObject.existsByMail(userMail))
-	    {
-	    	serviceInterfaceObject.updateData(User,userMail);
-		    return new ResponseEntity<User>(User,HttpStatus.OK);
-		}
-   	 	return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-	}*/
-	
-	
-	
+
 	/*************************************************************************************
-	 * Method:                       addRegistration
-     * Description:                  To add new user details by user.
-	 * @param registration         	 Add user details.
-	 * @mapping PostMapping          Make HTTP request to post user details.
-	 * @throws TestException         It is raised if the user details already exists. 
-	**************************************************************************************/
-	
+	 * Method: 					addRegistration 
+	 * Description: 			To add new user details by user.
+	 * @param registration 		Add user details.
+	 * @mapping PostMapping 	Make HTTP request to post user details.
+	 * @throws TestException	 It is raised if the user details already exists.
+	 **************************************************************************************/
+
 	@PostMapping("/registration")
-	public String addRegistration(@RequestBody User user) throws UserException
-	{
-		try
-		{
+	public String addRegistration(@RequestBody User user) throws UserException {
+		try {
 			serviceInterfaceObject.addRegistration(user);
 			return "You're Registered! Tap on login to go further.";
-		}
-		catch(DataIntegrityViolationException ex)
-		{
+		} catch (DataIntegrityViolationException ex) {
 			throw new UserException(" MAIL ID ALREADY EXISTS! Login or Register with new mail.");
-		}	
+		}
 	}
-	
-	
-	
+
 	/*************************************************************************************
-	 * Method:                       addAdmin
-     * Description:                  To add new admin details by admin.
-	 * @param addadmin   	      	 Add admin details.
-	 * @mapping PostMapping          Make HTTP request to post admin details.
-	 * @throws TestException         It is raised if the admin details already exists. 
-	**************************************************************************************/
-	
+	 * Method: 					addAdmin 
+	 * Description: 			To add new admin details by admin.
+	 * @param addadmin 			Add admin details.
+	 * @mapping PostMapping 	Make HTTP request to post admin details.
+	 * @throws TestException 	It is raised if the admin details already exists.
+	 **************************************************************************************/
+
 	@PostMapping("/addadmin")
-	public String addAdmin(@RequestBody User user) throws UserException
-	{
-		try
-		{
+	public String addAdmin(@RequestBody User user) throws UserException {
+		try {
 			serviceInterfaceObject.addRegistration(user);
 			return "New Admin added!";
-		}
-		catch(DataIntegrityViolationException ex)
-		{
+		} catch (DataIntegrityViolationException ex) {
 			throw new UserException(" This admin exists! ");
-		}	
-	}	
-	
-	
-	
+		}
+	}
+
 	/*************************************************************************************
-	 * Method:                       viewUserByMail
-     * Description:                  To get the details of the user by the help of mail.
-	 * @param viewuserbymail         Get user details.
-	 * @mapping GetMapping           Make HTTP request to get user details by mail.
-	 * @throws TestException         It is raised if the admin details already exists.  
-	**************************************************************************************/
-	
+	 * Method: 					viewUserByMail 
+	 * Description: 			To get the details of the user by the help of mail.
+	 * @param viewuserbymail 	Get user details.
+	 * @mapping GetMapping 		Make HTTP request to get user details by mail.
+	 * @throws TestException 	It is raised if the admin details already exists.
+	 **************************************************************************************/
+
 	@GetMapping("/viewuserbymail/{userMail}")
-	public ResponseEntity<Object> viewUserByMail(@PathVariable("userMail") String userMail) throws UserException
-	{
+	public ResponseEntity<Object> viewUserByMail(@PathVariable("userMail") String userMail) throws UserException {
 		User user = serviceInterfaceObject.viewUserByMail(userMail);
 		return new ResponseEntity<Object>(user, HttpStatus.OK);
 	}
-	
-	
-	
+
 	/************************************************************************************
-	 * Method:                       viewUsers
-     * Description:                  To get details of user present 
-	 * @param viewUsers              Display user details
-	 * @mapping GetMapping           Make HTTP request to get all user 
-	************************************************************************************/
-	
+	 * Method: 				viewUsers 
+	 * Description: 		To get details of user present
+	 * @param viewUsers 	Display user details
+	 * @mapping GetMapping 	Make HTTP request to get all user
+	 ************************************************************************************/
+
 	@GetMapping("/viewusers")
-	public ResponseEntity<Object> viewUsers() throws UserException
-	{
-		return new ResponseEntity<>(serviceInterfaceObject.viewUser(),HttpStatus.OK);
+	public ResponseEntity<Object> viewUsers() throws UserException {
+		return new ResponseEntity<>(serviceInterfaceObject.viewUser(), HttpStatus.OK);
 	}
-	
-	
-	
+
 	/*******************************************************************************************
-	 * Method:                       validateLogin
-     * Description:                  To verify username and password.
-	 * @param login                  Login the user into user/admin page according to the role.
-	 * @mapping GetMapping           Make HTTP request to get particular user.
-	********************************************************************************************/
-	
+	 * Method: 					validateLogin 
+	 * Description: 			To verify username and password.
+	 * @param login 			Login the user into user/admin page according to the role.
+	 * @mapping GetMapping 		Make HTTP request to get particular user.
+	 ********************************************************************************************/
+
 	@GetMapping("/login/{userMail}/{userPassword}")
-	public int validateLogin(@PathVariable String userMail, @PathVariable String userPassword)
-	{
+	public int validateLogin(@PathVariable String userMail, @PathVariable String userPassword) {
 		return serviceInterfaceObject.validateLogin(userMail, userPassword);
 	}
-	
-	
-	
+
 	/*******************************************************************************************
-	 * Method:                       verifyUser
-     * Description:                  To verify username and secretWord.
-	 * @param verifyuser             Verify the user to let the user changes it password.
-	 * @mapping GetMapping           Make HTTP request to get a particular user. 
-	********************************************************************************************/
-	
+	 * Method: 					verifyUser 
+	 * Description: 			To verify username and secretWord.
+	 * @param verifyuser 		Verify the user to let the user changes it password.
+	 * @mapping GetMapping 		Make HTTP request to get a particular user.
+	 ********************************************************************************************/
+
 	@GetMapping("/verifyuser/{userMail}/{secretWord}")
-	public int verifyUser(@PathVariable("userMail") String userMail,@PathVariable("secretWord") String secretWord) throws UserException
-	{
-		return serviceInterfaceObject.verifyUserSecretWord(userMail, secretWord); 
+	public int verifyUser(@PathVariable("userMail") String userMail, @PathVariable("secretWord") String secretWord)
+			throws UserException {
+		return serviceInterfaceObject.verifyUserSecretWord(userMail, secretWord);
 	}
-	
-	
+
 }
