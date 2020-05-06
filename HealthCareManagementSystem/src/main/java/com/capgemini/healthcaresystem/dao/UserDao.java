@@ -7,10 +7,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.capgemini.healthcaresystem.entity.User;
 import com.capgemini.healthcaresystem.exception.UserException;
+
+
+
+/************************************************************************************
+ *          @author          Maneesh Kumar
+ *          Description      It is a dao class that provides the methods to fetch 
+ *                           user's details
+ *          Version          1.0
+ *          Created Date     20-APR-2020
+ ************************************************************************************/
 
 @Transactional
 @Repository("UserDao")
@@ -18,7 +30,17 @@ public class UserDao implements UserDaoInterface
 {
 	@PersistenceContext
 	EntityManager em;
+	
+	private UserDao userDao;
 
+	
+	
+	/************************************************************************************
+	 * Method:                        getUser
+     * Description:                   To get user list details  
+	 * @param getUSer                 Get list of user details.
+	 ************************************************************************************/
+	
 	@Override
 	public List<User> getUser() 
 	{
@@ -28,6 +50,14 @@ public class UserDao implements UserDaoInterface
 		return userList;
 	}
 	
+	
+	
+	/************************************************************************************
+	 * Method:                        getUser
+     * Description:                   To update centre in diagnostic centre
+	 * @param getUser                 Update 
+	 ************************************************************************************/
+	
 	@Override
 	public User getUser(String userId) throws UserException 
 	{
@@ -35,6 +65,15 @@ public class UserDao implements UserDaoInterface
 		User user = em.find(User.class, userId);
 		return user;
 	}
+	
+	
+	
+	/************************************************************************************
+	 * Method:                        updateCentre
+     * Description:                   To update centre in diagnostic centre
+	 * @param updateCentre            Update centre
+	 
+	 ************************************************************************************/
 	
 	@Override
 	public boolean findMail(String userMail) 
@@ -47,6 +86,15 @@ public class UserDao implements UserDaoInterface
 		return false;
 	}
 
+	
+	
+	/************************************************************************************
+	 * Method:                        updateCentre
+     * Description:                   To update centre in diagnostic centre
+	 * @param updateCentre            Update centre
+	 
+	 ************************************************************************************/
+	
 	@Override
 	public Boolean delete(int userId) 
 	{
@@ -61,6 +109,23 @@ public class UserDao implements UserDaoInterface
 	}
 
 	
+	
+	/************************************************************************************
+	 * Method:                        updateCentre
+     * Description:                   To update centre in diagnostic centre
+	 * @param updateCentre            Update centre
+	 ************************************************************************************/
+	
+	@Override
+	public void updateUser(String userMail, String userPassword, int userId) 
+	{
+		// TODO Auto-generated method stub
+		User userUpdate = em.find(User.class, userId);
+		userUpdate.setUserPassword(userPassword);
+	}
+	
+
+	
 	/************************************************************************************
 	 * Method:                        updateCentre
      * Description:                   To update centre in diagnostic centre
@@ -69,19 +134,20 @@ public class UserDao implements UserDaoInterface
 	 ************************************************************************************/
 	
 	@Override
-	public void updateUser(String userMail, String userPassword) 
-	{
-		// TODO Auto-generated method stub
-		User updateUser =  em.find(User.class, userMail);
-		updateUser.setUserPassword(userPassword);
-	}
-
-	@Override
 	public User viewUserByMail(String userMail) 
 	{
 		// TODO Auto-generated method stub
 		return em.find(User.class, userMail);
 	}
+	
+	
+	
+	/************************************************************************************
+	 * Method:                        updateCentre
+     * Description:                   To update centre in diagnostic centre
+	 * @param updateCentre            Update centre
+	 
+	 ************************************************************************************/
 	
 	@Override
 	public boolean addRegistration(User user) 
@@ -90,6 +156,15 @@ public class UserDao implements UserDaoInterface
 		em.persist(user);
 		return true;
 	}
+	
+	
+	
+	/************************************************************************************
+	 * Method:                        updateCentre
+     * Description:                   To update centre in diagnostic centre
+	 * @param updateCentre            Update centre
+	 
+	 ************************************************************************************/
 	
 	@Override
 	public boolean checkUserByMail(String userMail) 
@@ -108,6 +183,15 @@ public class UserDao implements UserDaoInterface
    		return true;
 	}
 	
+	
+	
+	/************************************************************************************
+	 * Method:                        updateCentre
+     * Description:                   To update centre in diagnostic centre
+	 * @param updateCentre            Update centre
+	 
+	 ************************************************************************************/
+	
 	@Override
 	public User getUserByMail(String userMail) 
 	{
@@ -116,6 +200,15 @@ public class UserDao implements UserDaoInterface
    		TypedQuery<User> query = em.createQuery(Qstr,User.class).setParameter("USER_MAIL",userMail);
    		return query.getSingleResult();
 	}
+	
+	
+	
+	/************************************************************************************
+	 * Method:                        updateCentre
+     * Description:                   To update centre in diagnostic centre
+	 * @param updateCentre            Update centre
+	 
+	 ************************************************************************************/
 	
 	@Override
 	public int validateLogin(String userMail, String userPassword)
@@ -137,6 +230,15 @@ public class UserDao implements UserDaoInterface
 		else
 			return 0;
 	}
+	
+	
+	
+	/************************************************************************************
+	 * Method:                        updateCentre
+     * Description:                   To update centre in diagnostic centre
+	 * @param updateCentre            Update centre
+	 
+	 ************************************************************************************/
 	
 	@Override
 	public int validateSecretWord(String userMail, String secretWord)

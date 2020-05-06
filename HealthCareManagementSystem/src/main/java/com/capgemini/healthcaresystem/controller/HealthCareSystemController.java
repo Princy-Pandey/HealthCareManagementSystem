@@ -67,7 +67,7 @@ public class HealthCareSystemController
 	{
 		try 
 		{
-			serviceInterfaceObject.updatePassword(userMail, user.getUserPassword());
+			serviceInterfaceObject.updatePassword(userMail, user.getUserPassword(), user.getUserId());
 			return new ResponseEntity<>(" User Updated ",HttpStatus.OK);
 		}
 		catch(DataIntegrityViolationException ex)
@@ -147,7 +147,7 @@ public class HealthCareSystemController
 	**************************************************************************************/
 	
 	@GetMapping("/viewuserbymail/{userMail}")
-	public ResponseEntity<Object> viewUserByMail(@PathVariable("userMail") String userMail)
+	public ResponseEntity<Object> viewUserByMail(@PathVariable("userMail") String userMail) throws UserException
 	{
 		User user = serviceInterfaceObject.viewUserByMail(userMail);
 		return new ResponseEntity<Object>(user, HttpStatus.OK);

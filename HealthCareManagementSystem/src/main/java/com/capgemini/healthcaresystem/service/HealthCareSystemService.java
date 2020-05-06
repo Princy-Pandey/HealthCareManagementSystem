@@ -50,6 +50,20 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	
 	
 	/************************************************************************************
+	 * Method:                        deleteUser
+     * Description:                   To delete user registered
+	 * @param deleteUser                Deletes user's details
+	************************************************************************************/
+	
+	@Override
+	public Boolean deleteUser(int userId) {
+		// TODO Auto-generated method stub
+		return userDaoInterface.delete(userId);
+	}
+	
+	
+	
+	/************************************************************************************
 	 * Method:                        existsByMail
      * Description:                   To check existed user by mail
 	 * @param existsByMail            Checks users.
@@ -78,7 +92,7 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	public User viewUserByMail(String userMail) 
 	{
 		// TODO Auto-generated method stub
-		User user = userDaoInterface.viewUserByMail(userMail);
+		User user = userDaoInterface.getUserByMail(userMail);
 		return user;
 	}
 	
@@ -91,26 +105,13 @@ public class HealthCareSystemService implements HealthCareSystemServiceInterface
 	************************************************************************************/
 	
 	@Override
-	public void updatePassword(String userMail, String userPassword) 
+	public void updatePassword(String userMail, String userPassword, int userId) 
 	{
 		// TODO Auto-generated method stub
-		userDaoInterface.updateUser(userMail, userPassword);
+		userDaoInterface.updateUser(userMail, userPassword, userId);
+		
 	}
 
-	
-	
-	/************************************************************************************
-	 * Method:                        deleteUser
-     * Description:                   To delete user registered
-	 * @param deleteUser                Deletes user's details
-	************************************************************************************/
-	
-	@Override
-	public Boolean deleteUser(int userId) {
-		// TODO Auto-generated method stub
-		return userDaoInterface.delete(userId);
-	}	
-	
 	
 	
 	/************************************************************************************

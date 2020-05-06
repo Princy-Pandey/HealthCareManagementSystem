@@ -11,7 +11,7 @@ public interface UserDaoInterface
 	User getUser(String userId) throws UserException;
 	boolean findMail(String userMail);
 	Boolean delete(int userId);
-	void updateUser(String userMail, String userPassword);
+	void updateUser(String userMail, String userPassword, int userId);
 	boolean addRegistration(User user);
 	boolean checkUserByMail(String email);
 	User getUserByMail(String email);
