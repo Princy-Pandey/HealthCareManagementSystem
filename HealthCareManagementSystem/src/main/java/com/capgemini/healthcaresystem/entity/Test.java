@@ -3,15 +3,12 @@ package com.capgemini.healthcaresystem.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -46,7 +43,7 @@ public class Test {
 	
     
     /*************Centre Id ****************/
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.REMOVE)
 	@JoinColumn(name= "DIAGNOSTIC_CENTRE",referencedColumnName = "centre_id" )
 	private DiagnosticCentre diagnosticCentre;
 
