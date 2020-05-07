@@ -43,7 +43,7 @@ public class Test {
 	
     
     /*************Centre Id ****************/
-	@ManyToOne(cascade=CascadeType.REMOVE)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name= "DIAGNOSTIC_CENTRE",referencedColumnName = "centre_id" )
 	private DiagnosticCentre diagnosticCentre;
 
